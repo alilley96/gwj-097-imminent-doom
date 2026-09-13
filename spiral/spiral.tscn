@@ -22,10 +22,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze_container")]
+[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze_container", "damage_timer")]
 script = ExtResource("1_1wqmu")
 thought_bubble_sprite = NodePath("AnimatedSprite2D")
 maze_container = NodePath("StaticBody2D")
+damage_timer = NodePath("DamageTimer")
 metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411711405]
@@ -54,3 +55,5 @@ polygon = PackedVector2Array(0, -6, -5, -4, -7, 0, -5, 5, -1, 6, 6, 4, 6, 0, 5, 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D" unique_id=2055534090]
 rotation = -0.032198306
 polygon = PackedVector2Array(0, -6, -5, -4, -7, 0, -5, 5, -1, 6, 6, 4, 6, 0, 5, -5)
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=287396434]

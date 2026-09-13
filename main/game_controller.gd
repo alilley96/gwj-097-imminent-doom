@@ -63,12 +63,14 @@ func _spawn_spiral() -> void:
 	new_spiral.position = spawn_point.position
 	add_child(new_spiral)
 	_spirals.append(new_spiral)
+	new_spiral.damage.connect(player.apply_damage)
 
 
 func _rotate_spirals_clockwise() -> void:
 	for spiral in _spirals:
 		spiral.rotate_clockwise()
 	
+
 func _rotate_spirals_counter_clockwise() -> void:
 	for spiral in _spirals:
 		spiral.rotate_counter_clockwise()

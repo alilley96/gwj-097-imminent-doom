@@ -128,15 +128,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" unique_id=1874287193 node_paths=PackedStringArray("health_timer", "body_sprite", "face_sprite")]
+[node name="Player" type="Node2D" unique_id=1874287193 node_paths=PackedStringArray("body_sprite", "face_sprite")]
 script = ExtResource("1_oul6g")
-health_timer = NodePath("Timer")
 body_sprite = NodePath("BodyAnimatedSprite")
 face_sprite = NodePath("FaceAnimatedSprite")
 metadata/_custom_type_script = "uid://dkel21ipj1dpm"
-
-[node name="Timer" type="Timer" parent="." unique_id=1751636033]
-one_shot = true
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1601529161]
 sprite_frames = SubResource("SpriteFrames_boad6")
