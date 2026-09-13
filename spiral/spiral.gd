@@ -1,10 +1,10 @@
 class_name Spiral
-extends Node3D
+extends Node2D
 
 
 # Exports ----------------------------------------------------------------
 
-@export var thought_bubble_sprite: AnimatedSprite3D
+@export var thought_bubble_sprite: AnimatedSprite2D
 
 
 # Lifecycle Functions ----------------------------------------------------------------
@@ -16,8 +16,8 @@ func _ready() -> void:
 # Public Functions ----------------------------------------------------------------
 
 func rotate_clockwise() -> void:
-	rotate(Vector3.FORWARD, 0.1)
+	rotate(0.1)
 
 
 func rotate_counter_clockwise() -> void:
-	rotate(Vector3.FORWARD, -0.1)
+	rotate(-0.1)

@@ -22,12 +22,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Spiral" type="Node3D" unique_id=338797302 node_paths=PackedStringArray("thought_bubble_sprite")]
+[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite")]
 script = ExtResource("1_1wqmu")
-thought_bubble_sprite = NodePath("AnimatedSprite3D")
+thought_bubble_sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1801918302]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411711405]
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_djd8e")
-frame_progress = 0.07030915
+frame_progress = 0.006900374

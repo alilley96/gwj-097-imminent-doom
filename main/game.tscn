@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c44th7ui0g8og"]
+
+[ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="1_63c7r"]
+[ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
+[ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
+[ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="4_vfw6y"]
+
+[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "player", "spiral_spawn_timer", "spiral_spawn_points")]
+script = ExtResource("1_63c7r")
+input_controller = NodePath("InputController")
+player = NodePath("Player")
+spiral_spawn_rate = 1.0
+spiral_spawn_timer = NodePath("SpiralSpawnTimer")
+spiral_spawn_points = [NodePath("SpiralSpawnPoints/SpiralSpawnPoint_0"), NodePath("SpiralSpawnPoints/SpiralSpawnPoint_1"), NodePath("SpiralSpawnPoints/SpiralSpawnPoint_2")]
+metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
+
+[node name="InputController" type="Node" parent="." unique_id=340821141]
+script = ExtResource("2_2fwfh")
+metadata/_custom_type_script = "uid://desrwj3job6fl"
+
+[node name="Player" parent="." unique_id=1874287193 instance=ExtResource("3_46yon")]
+position = Vector2(29, 177)
+scale = Vector2(0.3, 0.3)
+
+[node name="SpiralSpawnPoints" type="Node" parent="." unique_id=662160525]
+
+[node name="SpiralSpawnPoint_0" parent="SpiralSpawnPoints" unique_id=1003672187 instance=ExtResource("4_vfw6y")]
+position = Vector2(-609, -152)
+
+[node name="SpiralSpawnPoint_1" parent="SpiralSpawnPoints" unique_id=290178425 instance=ExtResource("4_vfw6y")]
+position = Vector2(312, -268)
+
+[node name="SpiralSpawnPoint_2" parent="SpiralSpawnPoints" unique_id=628543463 instance=ExtResource("4_vfw6y")]
+position = Vector2(601, 153)
+
+[node name="SpiralSpawnTimer" type="Timer" parent="." unique_id=505923704]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1232335331]

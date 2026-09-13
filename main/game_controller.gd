@@ -1,11 +1,10 @@
 class_name GameController
-extends Node
+extends Node2D
 
 # Exports ----------------------------------------------------------------
 
 @export var input_controller: InputController
 @export var player: Player
-@export var light: OmniLight3D
 
 @export var spiral_spawn_rate: float
 @export var spiral_spawn_timer: Timer
@@ -36,8 +35,9 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	if player.health > 0.0:
-		light.light_energy = player.health
+	#if player.health > 0.0:
+		#light.light_energy = player.health
+	pass
 
 
 # Private functions ----------------------------------------------------------------

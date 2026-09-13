@@ -1,5 +1,5 @@
 class_name Player
-extends Node3D
+extends Node2D
 
 # Signals ----------------------------------------------------------------
 
@@ -10,8 +10,8 @@ signal no_health
 		
 @export var initial_health: float = 20.0
 @export var health_timer: Timer
-@export var body_sprite: AnimatedSprite3D
-@export var face_sprite: AnimatedSprite3D
+@export var body_sprite: AnimatedSprite2D
+@export var face_sprite: AnimatedSprite2D
 
 @export var states_ordered: Array[StringName] = [
 	"doomed",

@@ -1,5 +1,5 @@
 class_name SpiralSpawnPoint
-extends Node3D
+extends Node2D
 
 
 # Public Variables ----------------------------------------------------------------

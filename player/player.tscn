@@ -128,24 +128,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node3D" unique_id=608399396 node_paths=PackedStringArray("health_timer", "body_sprite", "face_sprite")]
+[node name="Player" type="Node2D" unique_id=1874287193 node_paths=PackedStringArray("health_timer", "body_sprite", "face_sprite")]
 script = ExtResource("1_oul6g")
 health_timer = NodePath("Timer")
-body_sprite = NodePath("BodyAnimatedSprite3D")
-face_sprite = NodePath("FaceAnimatedSprite3D")
+body_sprite = NodePath("BodyAnimatedSprite")
+face_sprite = NodePath("FaceAnimatedSprite")
 metadata/_custom_type_script = "uid://dkel21ipj1dpm"
 
 [node name="Timer" type="Timer" parent="." unique_id=1751636033]
 one_shot = true
 
-[node name="BodyAnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=284156658]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+[node name="BodyAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=1601529161]
 sprite_frames = SubResource("SpriteFrames_boad6")
-frame_progress = 0.3954243
+frame_progress = 0.714657
 
-[node name="FaceAnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1756022977]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.015844107)
+[node name="FaceAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=525676287]
 sprite_frames = SubResource("SpriteFrames_rptt4")
 animation = &"doomed"
-frame_progress = 0.6061038
+frame_progress = 0.13763821
 speed_scale = 0.5
