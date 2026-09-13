@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://didoqi10nvktb"]
+
+[ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="1_xwkvk"]
+[ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="2_c651c"]
+[ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="3_xwkvk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_o5qli"]
+sky_material = SubResource("ProceduralSkyMaterial_sgp6g")
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 1
+sky = SubResource("Sky_o5qli")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
+size = Vector2(15, 7.5)
+
+[node name="main" type="Node3D" unique_id=2037633316]
+
+[node name="GameController" type="Node" parent="." unique_id=1022687906 node_paths=PackedStringArray("player", "light", "spiral_spawn_timer", "spiral_spawn_points")]
+script = ExtResource("2_c651c")
+player = NodePath("../Player")
+light = NodePath("../OmniLight3D")
+spiral_spawn_rate = 1.0
+spiral_spawn_timer = NodePath("../SpiralSpawnTimer")
+spiral_spawn_points = [NodePath("../SpiralSpawnPoint_0"), NodePath("../SpiralSpawnPoint_1"), NodePath("../SpiralSpawnPoint_2")]
+metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=361380395]
+environment = SubResource("Environment_0wfyh")
+
+[node name="camera" type="Camera3D" parent="." unique_id=1872514859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 2.5)
+
+[node name="ground" type="MeshInstance3D" parent="." unique_id=1345778300]
+mesh = SubResource("PlaneMesh_7dm0k")
+
+[node name="background" type="MeshInstance3D" parent="." unique_id=1759404037]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 2.5, -2.5)
+mesh = SubResource("PlaneMesh_7dm0k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=368608358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1322875, 0.605216)
+
+[node name="Player" parent="." unique_id=608399396 instance=ExtResource("1_xwkvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1013412, -1.2229967)
+
+[node name="SpiralSpawnTimer" type="Timer" parent="." unique_id=1306024365]
+
+[node name="SpiralSpawnPoint_0" parent="." unique_id=1953548268 instance=ExtResource("3_xwkvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3071439, 1.209146, -0.876844)
+
+[node name="SpiralSpawnPoint_1" parent="." unique_id=237963885 instance=ExtResource("3_xwkvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.812556, 1.9557843, -1.184431)
+
+[node name="SpiralSpawnPoint_2" parent="." unique_id=1403122548 instance=ExtResource("3_xwkvk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93920374, 2.6578174, -1.3106323)

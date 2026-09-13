@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cm7if45dyk731"]
+
+[ext_resource type="Script" uid="uid://b6cm8ecfo86uo" path="res://spiral/spiral.gd" id="1_1wqmu"]
+[ext_resource type="Texture2D" uid="uid://bhkkxvnmfk2f6" path="res://spiral/assets/thought_bubble_frame_0.png" id="2_pcdha"]
+[ext_resource type="Texture2D" uid="uid://bgg3e66huuc6p" path="res://spiral/assets/thought_bubble_frame_1.png" id="3_lgvn7"]
+[ext_resource type="Texture2D" uid="uid://c44sp4ubvsl7n" path="res://spiral/assets/thought_bubble_frame_2.png" id="4_fr45i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_djd8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pcdha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lgvn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fr45i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Spiral" type="Node3D" unique_id=338797302 node_paths=PackedStringArray("thought_bubble_spite")]
+script = ExtResource("1_1wqmu")
+thought_bubble_spite = NodePath("AnimatedSprite3D")
+metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1801918302]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_djd8e")
+frame_progress = 0.5575696
