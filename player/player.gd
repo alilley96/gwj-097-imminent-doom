@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var current_state = PlayerStates.CONTENT
+	var current_state := PlayerStates.CONTENT
 	
 	for state in PlayerStates.STATES:
 		if _health < state.health_threshold:

@@ -53,12 +53,11 @@ size = Vector2(52, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pcdha"]
 radius = 8.0
 
-[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze_container", "ball", "damage_timer", "maze_end_area")]
+[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze_container", "ball", "maze_end_area")]
 script = ExtResource("1_1wqmu")
 thought_bubble_sprite = NodePath("AnimatedSprite2D")
 maze_container = NodePath("Maze")
 ball = NodePath("Ball")
-damage_timer = NodePath("DamageTimer")
 maze_end_area = NodePath("Maze/MazeEndArea2D")
 metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
 
@@ -66,7 +65,7 @@ metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
 position = Vector2(0, 29)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_djd8e")
-frame_progress = 0.17204823
+frame_progress = 0.39136052
 
 [node name="Maze" type="StaticBody2D" parent="." unique_id=949086165]
 

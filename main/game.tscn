@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="1_63c7r"]
 [ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
+[ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://spiral/spiral_controller.gd" id="3_3qcir"]
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
 [ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="4_vfw6y"]
 [ext_resource type="Texture2D" uid="uid://c8vljxkopppg" path="res://main/assets/background_0.png" id="5_vfw6y"]
@@ -17,18 +18,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "player", "spiral_spawn_timer", "spiral_spawn_points")]
+[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "player")]
 script = ExtResource("1_63c7r")
 input_controller = NodePath("InputController")
+spiral_controller = NodePath("SpiralController")
 player = NodePath("Player")
-spiral_spawn_rate = 1.0
-spiral_spawn_timer = NodePath("SpiralSpawnTimer")
-spiral_spawn_points = [NodePath("SpiralSpawnPoints/SpiralSpawnPoint_0"), NodePath("SpiralSpawnPoints/SpiralSpawnPoint_1"), NodePath("SpiralSpawnPoints/SpiralSpawnPoint_2")]
 metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
 
 [node name="InputController" type="Node" parent="." unique_id=340821141]
 script = ExtResource("2_2fwfh")
 metadata/_custom_type_script = "uid://desrwj3job6fl"
+
+[node name="SpiralController" type="Node" parent="." unique_id=264240810 node_paths=PackedStringArray("spiral_spawn_timer", "spiral_spawn_points")]
+script = ExtResource("3_3qcir")
+spiral_spawn_rate = 2.0
+spiral_spawn_timer = NodePath("../SpiralSpawnTimer")
+spiral_spawn_points = [NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_0"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_1"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_2")]
+metadata/_custom_type_script = "uid://b5nftxjid3qwf"
 
 [node name="Player" parent="." unique_id=1874287193 instance=ExtResource("3_46yon")]
 position = Vector2(29, 141)
