@@ -5,7 +5,7 @@ extends Node2D
 # Exports ----------------------------------------------------------------
 
 @export var thought_bubble_sprite: AnimatedSprite2D
-
+@export var maze_container: StaticBody2D
 
 # Lifecycle Functions ----------------------------------------------------------------
 
@@ -16,8 +16,8 @@ func _ready() -> void:
 # Public Functions ----------------------------------------------------------------
 
 func rotate_clockwise() -> void:
-	rotate(0.1)
+	maze_container.rotate(0.1)
 
 
 func rotate_counter_clockwise() -> void:
-	rotate(-0.1)
+	maze_container.rotate(-0.1)
