@@ -13,31 +13,12 @@ signal no_health
 @export var body_sprite: AnimatedSprite2D
 @export var face_sprite: AnimatedSprite2D
 
-@export var states_ordered: Array[StringName] = [
-	"doomed",
-	"anxious",
-	"not_great",
-	"neutral",
-	"content"
-]
-
-
-# Constants ----------------------------------------------------------------
-
-var BREATHING_SPEED_FACTOR: float = 0.4
-
 
 # Public variables ----------------------------------------------------------------
 
 var health: float:
 	get:
 		return health_timer.time_left
-
-
-# Private variables ----------------------------------------------------------------
-
-var _state_count: int = states_ordered.size()
-var _state_threshold_step_size: float = initial_health / _state_count
 
 
 # Lifecycle Functions ----------------------------------------------------------------
@@ -48,23 +29,19 @@ func _ready() -> void:
 	health_timer.timeout.connect(_on_health_timer_timeout)
 	
 	body_sprite.play()
-	face_sprite.animation = "content"
 	face_sprite.play()
 
 
-func _process(delta: float) -> void:
-	var current_state = "content"
-	var breathing_speed = 1.0
+func _process(_delta: float) -> void:
+	var current_state = PlayerStates.CONTENT
 	
-	for i in range(_state_count):
-		var threshold = (i + 1) * _state_threshold_step_size
-		if health < threshold:
-			current_state = states_ordered[i]
-			breathing_speed = _state_count / (i + 1)
+	for state in PlayerStates.STATES:
+		if health < state.health_threshold:
+			current_state = state
 			break
 		
-	face_sprite.animation = current_state
-	body_sprite.speed_scale = breathing_speed * BREATHING_SPEED_FACTOR
+	face_sprite.animation = current_state.face_animation_name
+	body_sprite.speed_scale = current_state.breathing_speed
 
 
 # Private Functions ----------------------------------------------------------------
