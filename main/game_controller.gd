@@ -80,9 +80,6 @@ func _get_free_spawn_point() -> SpiralSpawnPoint:
 
 
 func _spiral_completed(completed_spiral: Spiral, health_regen: float) -> void:
-	print("Completed Spiral: ", completed_spiral)
-	print("Health Regen: ", health_regen)
-
 	player.regen_health(health_regen)
 
 	_spirals.erase(completed_spiral)
@@ -91,7 +88,7 @@ func _spiral_completed(completed_spiral: Spiral, health_regen: float) -> void:
 	completed_spiral.completed.disconnect(_spiral_completed)
 
 	completed_spiral.spawn_point.active_spiral = null
-	completed_spiral.queue_free()
+	completed_spiral.destroy()
 	
 	
 func _rotate_spirals_clockwise() -> void:

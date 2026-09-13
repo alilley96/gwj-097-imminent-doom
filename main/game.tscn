@@ -4,6 +4,18 @@
 [ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
 [ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="4_vfw6y"]
+[ext_resource type="Texture2D" uid="uid://c8vljxkopppg" path="res://main/assets/background_0.png" id="5_vfw6y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3qcir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vfw6y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "player", "spiral_spawn_timer", "spiral_spawn_points")]
 script = ExtResource("1_63c7r")
@@ -19,8 +31,8 @@ script = ExtResource("2_2fwfh")
 metadata/_custom_type_script = "uid://desrwj3job6fl"
 
 [node name="Player" parent="." unique_id=1874287193 instance=ExtResource("3_46yon")]
-position = Vector2(29, 177)
-scale = Vector2(0.3, 0.3)
+position = Vector2(29, 141)
+scale = Vector2(0.5, 0.5)
 
 [node name="SpiralSpawnPoints" type="Node" parent="." unique_id=662160525]
 
@@ -36,3 +48,8 @@ position = Vector2(601, 153)
 [node name="SpiralSpawnTimer" type="Timer" parent="." unique_id=505923704]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1232335331]
+
+[node name="BackgroundAnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=838533251]
+z_index = -1
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_3qcir")

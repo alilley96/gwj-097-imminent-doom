@@ -11,6 +11,7 @@ signal completed(spiral: Spiral, health_regen: float)
 
 @export var thought_bubble_sprite: AnimatedSprite2D
 @export var maze_container: StaticBody2D
+@export var ball: Node2D
 @export var damage_timer: Timer
 @export var maze_end_area: Area2D
 
@@ -30,6 +31,7 @@ var _damage_per_second: float = 5.0
 # Lifecycle Functions ----------------------------------------------------------------
 
 func _ready() -> void:
+	thought_bubble_sprite.animation = "default"
 	thought_bubble_sprite.play()
 
 	damage_timer.wait_time = 1.0
@@ -48,6 +50,15 @@ func rotate_clockwise() -> void:
 
 func rotate_counter_clockwise() -> void:
 	maze_container.rotate(-0.1)
+
+
+func destroy() -> void:
+	thought_bubble_sprite.animation = "pop"
+	thought_bubble_sprite.sprite_frames.set_animation_loop("pop", false)
+	thought_bubble_sprite.animation_finished.connect(queue_free)
+	
+	maze_container.visible = false
+	ball.visible = false
 
 
 # Private Functions -----------------------------------------------------------------
