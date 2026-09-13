@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="1_63c7r"]
 [ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
-[ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://spiral/spiral_controller.gd" id="3_3qcir"]
+[ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://main/spiral_controller.gd" id="3_3qcir"]
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
 [ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="4_vfw6y"]
 [ext_resource type="Texture2D" uid="uid://c8vljxkopppg" path="res://main/assets/background_0.png" id="5_vfw6y"]
