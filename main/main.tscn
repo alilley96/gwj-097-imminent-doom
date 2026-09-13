@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://didoqi10nvktb"]
 
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="1_xwkvk"]
+[ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_3wy1v"]
 [ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="2_c651c"]
 [ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="3_xwkvk"]
 
@@ -20,14 +21,19 @@ size = Vector2(15, 7.5)
 
 [node name="main" type="Node3D" unique_id=2037633316]
 
-[node name="GameController" type="Node" parent="." unique_id=1022687906 node_paths=PackedStringArray("player", "light", "spiral_spawn_timer", "spiral_spawn_points")]
+[node name="GameController" type="Node" parent="." unique_id=1022687906 node_paths=PackedStringArray("input_controller", "player", "light", "spiral_spawn_timer", "spiral_spawn_points")]
 script = ExtResource("2_c651c")
+input_controller = NodePath("../InputController")
 player = NodePath("../Player")
 light = NodePath("../OmniLight3D")
 spiral_spawn_rate = 1.0
 spiral_spawn_timer = NodePath("../SpiralSpawnTimer")
 spiral_spawn_points = [NodePath("../SpiralSpawnPoint_0"), NodePath("../SpiralSpawnPoint_1"), NodePath("../SpiralSpawnPoint_2")]
 metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
+
+[node name="InputController" type="Node" parent="." unique_id=506508244]
+script = ExtResource("2_3wy1v")
+metadata/_custom_type_script = "uid://desrwj3job6fl"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=361380395]
 environment = SubResource("Environment_0wfyh")

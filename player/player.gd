@@ -26,6 +26,7 @@ signal no_health
 
 var BREATHING_SPEED_FACTOR: float = 0.4
 
+
 # Public variables ----------------------------------------------------------------
 
 var health: float:
@@ -51,7 +52,7 @@ func _ready() -> void:
 	face_sprite.play()
 
 
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	var current_state = "content"
 	var breathing_speed = 1.0
 	
@@ -59,7 +60,7 @@ func _process(delta: float) -> void:
 		var threshold = (i + 1) * _state_threshold_step_size
 		if health < threshold:
 			current_state = states_ordered[i]
-			breathing_speed = _state_count / (i+1)
+			breathing_speed = _state_count / (i + 1)
 			break
 		
 	face_sprite.animation = current_state

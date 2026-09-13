@@ -3,12 +3,14 @@ extends Node
 
 # Exports ----------------------------------------------------------------
 
+@export var input_controller: InputController
 @export var player: Player
 @export var light: OmniLight3D
 
 @export var spiral_spawn_rate: float
 @export var spiral_spawn_timer: Timer
 @export var spiral_spawn_points: Array[SpiralSpawnPoint]
+
 
 # Constants ----------------------------------------------------------------
 
@@ -29,8 +31,11 @@ func _ready() -> void:
 	spiral_spawn_timer.timeout.connect(_spawn_spiral)
 	spiral_spawn_timer.start()
 	
+	input_controller.rotate_clockwise.connect(_rotate_spirals_clockwise)
+	input_controller.rotate_counter_clockwise.connect(_rotate_spirals_counter_clockwise)
+	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.health > 0.0:
 		light.light_energy = player.health
 
@@ -57,3 +62,13 @@ func _spawn_spiral() -> void:
 	var new_spiral = SPIRAL_SCENE.instantiate()
 	new_spiral.position = spawn_point.position
 	add_child(new_spiral)
+	_spirals.append(new_spiral)
+
+
+func _rotate_spirals_clockwise() -> void:
+	for spiral in _spirals:
+		spiral.rotate_clockwise()
+	
+func _rotate_spirals_counter_clockwise() -> void:
+	for spiral in _spirals:
+		spiral.rotate_counter_clockwise()
