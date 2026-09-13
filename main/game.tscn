@@ -21,7 +21,6 @@ metadata/_custom_type_script = "uid://desrwj3job6fl"
 [node name="Player" parent="." unique_id=1874287193 instance=ExtResource("3_46yon")]
 position = Vector2(29, 177)
 scale = Vector2(0.3, 0.3)
-initial_health = 100.0
 
 [node name="SpiralSpawnPoints" type="Node" parent="." unique_id=662160525]
 

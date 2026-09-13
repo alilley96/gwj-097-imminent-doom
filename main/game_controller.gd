@@ -47,25 +47,53 @@ func _game_over() -> void:
 
 
 func _spawn_spiral() -> void:
+	var spawn_point = _get_free_spawn_point()
+	if spawn_point == null:
+		return
+
+	var new_spiral = SPIRAL_SCENE.instantiate()
+	spawn_point.active_spiral = new_spiral
+	new_spiral.spawn_point = spawn_point
+
+	new_spiral.position = spawn_point.position
+	_spirals.append(new_spiral)
+
+	new_spiral.damage.connect(player.apply_damage)
+	new_spiral.completed.connect(_spiral_completed)
+
+	add_child(new_spiral)
+
+
+func _get_free_spawn_point() -> SpiralSpawnPoint:
 	var free_spawn_points = []
 	for point in spiral_spawn_points:
-		if not point.in_use:
+		if not point.active_spiral:
 			free_spawn_points.append(point)
 
 	if free_spawn_points.size() == 0:
-		return
+		return null
 
 	var random_index = randi() % free_spawn_points.size()
 	var spawn_point = free_spawn_points[random_index]
-	spawn_point.in_use = true
 
-	var new_spiral = SPIRAL_SCENE.instantiate()
-	new_spiral.position = spawn_point.position
-	add_child(new_spiral)
-	_spirals.append(new_spiral)
-	new_spiral.damage.connect(player.apply_damage)
+	return spawn_point
 
 
+func _spiral_completed(completed_spiral: Spiral, health_regen: float) -> void:
+	print("Completed Spiral: ", completed_spiral)
+	print("Health Regen: ", health_regen)
+
+	player.regen_health(health_regen)
+
+	_spirals.erase(completed_spiral)
+
+	completed_spiral.damage.disconnect(player.apply_damage)
+	completed_spiral.completed.disconnect(_spiral_completed)
+
+	completed_spiral.spawn_point.active_spiral = null
+	completed_spiral.queue_free()
+	
+	
 func _rotate_spirals_clockwise() -> void:
 	for spiral in _spirals:
 		spiral.rotate_clockwise()

@@ -4,6 +4,7 @@ extends Node2D
 # Signals
 
 signal damage()
+signal completed(spiral: Spiral, health_regen: float)
 
 
 # Exports ----------------------------------------------------------------
@@ -11,6 +12,14 @@ signal damage()
 @export var thought_bubble_sprite: AnimatedSprite2D
 @export var maze_container: StaticBody2D
 @export var damage_timer: Timer
+@export var maze_end_area: Area2D
+
+@export var health_regen: float = 10.0
+
+
+# Public Variables ----------------------------------------------------------------
+
+var spawn_point: SpiralSpawnPoint = null
 
 
 # Private variables ----------------------------------------------------------------
@@ -28,6 +37,8 @@ func _ready() -> void:
 	damage_timer.one_shot = false
 	damage_timer.start()
 
+	maze_end_area.body_entered.connect(_maze_completed)
+
 
 # Public Functions ----------------------------------------------------------------
 
@@ -43,3 +54,7 @@ func rotate_counter_clockwise() -> void:
 
 func _damage_timer_timeout() -> void:
 	damage.emit(_damage_per_second)
+
+
+func _maze_completed(_body: Node2D) -> void:
+	completed.emit(self, health_regen)

@@ -43,3 +43,9 @@ func apply_damage(amount: float) -> void:
 	_health -= amount
 	if _health <= 0.0:
 		no_health.emit()
+
+
+func regen_health(amount: float) -> void:
+	_health += amount
+	if _health > max_health:
+		_health = max_health

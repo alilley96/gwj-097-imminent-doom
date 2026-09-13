@@ -4,4 +4,4 @@ extends Node2D
 
 # Public Variables ----------------------------------------------------------------
 
-var in_use: bool = false
+var active_spiral: Spiral = null

@@ -22,11 +22,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze_container", "damage_timer")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcdha"]
+size = Vector2(52, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pcdha"]
+radius = 8.0
+
+[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze_container", "damage_timer", "maze_end_area")]
 script = ExtResource("1_1wqmu")
 thought_bubble_sprite = NodePath("AnimatedSprite2D")
-maze_container = NodePath("StaticBody2D")
+maze_container = NodePath("Maze")
 damage_timer = NodePath("DamageTimer")
+maze_end_area = NodePath("Maze/MazeEndArea2D")
 metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411711405]
@@ -35,25 +42,31 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_djd8e")
 frame_progress = 0.006900374
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=949086165]
+[node name="Maze" type="StaticBody2D" parent="." unique_id=949086165]
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=121022108]
+[node name="Polygon2D" type="Polygon2D" parent="Maze" unique_id=121022108]
 rotation = -0.02226139
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-102, -60, -67, -92, -29, -104, -31, -123, -70, -109, -111, -67, -126, -21, -127, 27, -105, 74, -63, 99, -14, 115, 40, 116, 81, 87, 113, 45, 123, -1, 118, -48, 89, -91, 30, -127, 26, -105, 78, -77, 104, -43, 105, -2, 99, 36, 69, 76, 35, 96, -15, 95, -56, 80, -92, 56, -109, 15, -110, -26)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=330201905]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Maze" unique_id=330201905]
 rotation = -0.02226139
 polygon = PackedVector2Array(-102, -60, -67, -92, -29, -104, -31, -123, -70, -109, -111, -67, -126, -21, -127, 27, -105, 74, -63, 99, -14, 115, 40, 116, 81, 87, 113, 45, 123, -1, 118, -48, 89, -91, 30, -127, 26, -105, 78, -77, 104, -43, 105, -2, 99, 36, 69, 76, 35, 96, -15, 95, -56, 80, -92, 56, -109, 15, -110, -26)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=925688684]
+[node name="MazeEndArea2D" type="Area2D" parent="Maze" unique_id=1156943668]
+position = Vector2(0, -115)
 
-[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D" unique_id=944091577]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/MazeEndArea2D" unique_id=2115580894]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_pcdha")
+
+[node name="Ball" type="RigidBody2D" parent="." unique_id=925688684]
+
+[node name="Polygon2D" type="Polygon2D" parent="Ball" unique_id=944091577]
 color = Color(0, 1, 0, 1)
 polygon = PackedVector2Array(0, -6, -5, -4, -7, 0, -5, 5, -1, 6, 6, 4, 6, 0, 5, -5)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D" unique_id=2055534090]
-rotation = -0.032198306
-polygon = PackedVector2Array(0, -6, -5, -4, -7, 0, -5, 5, -1, 6, 6, 4, 6, 0, 5, -5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=225752963]
+shape = SubResource("CircleShape2D_pcdha")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=287396434]
