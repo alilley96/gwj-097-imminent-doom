@@ -43,16 +43,16 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_rptt4"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("5_32hag")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": ExtResource("6_tqiix")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": ExtResource("7_e7oew")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": ExtResource("6_tqiix")
 }],
 "loop": true,
@@ -60,16 +60,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": ExtResource("8_c35mf")
 }, {
-"duration": 1.0,
+"duration": 0.2,
 "texture": ExtResource("9_65viv")
 }, {
-"duration": 1.0,
+"duration": 0.2,
 "texture": ExtResource("10_x7c3f")
 }, {
-"duration": 1.0,
+"duration": 0.2,
 "texture": ExtResource("9_65viv")
 }],
 "loop": true,
@@ -77,16 +77,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("11_bjvpn")
 }, {
-"duration": 1.0,
+"duration": 0.4,
 "texture": ExtResource("12_s7qer")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": ExtResource("13_g4c7l")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": ExtResource("12_s7qer")
 }],
 "loop": true,
@@ -94,16 +94,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("14_knn7v")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("15_7pqkx")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("16_uw77l")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("15_7pqkx")
 }],
 "loop": true,
@@ -111,7 +111,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("17_c35mf")
 }, {
 "duration": 1.0,
@@ -141,10 +141,11 @@ one_shot = true
 [node name="BodyAnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=284156658]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 sprite_frames = SubResource("SpriteFrames_boad6")
-frame_progress = 0.45570403
+frame_progress = 0.3954243
 
 [node name="FaceAnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1756022977]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.015844107)
 sprite_frames = SubResource("SpriteFrames_rptt4")
-animation = &"content"
+animation = &"doomed"
+frame_progress = 0.6061038
 speed_scale = 0.5
