@@ -25,18 +25,6 @@ func _ready() -> void:
 	face_sprite.play()
 
 
-func _process(_delta: float) -> void:
-	var current_state := PlayerStates.CONTENT
-	
-	for state in PlayerStates.STATES:
-		if _health < state.health_threshold:
-			current_state = state
-			break
-		
-	face_sprite.animation = current_state.face_animation_name
-	body_sprite.speed_scale = current_state.breathing_speed
-
-
 # Public Functions ----------------------------------------------------------------
 
 func apply_damage(amount: float) -> void:
@@ -49,3 +37,15 @@ func regen_health(amount: float) -> void:
 	_health += amount
 	if _health > max_health:
 		_health = max_health
+
+
+func tick() -> void:
+	var current_state := PlayerStates.CONTENT
+	
+	for state in PlayerStates.STATES:
+		if _health < state.health_threshold:
+			current_state = state
+			break
+		
+	face_sprite.animation = current_state.face_animation_name
+	body_sprite.speed_scale = current_state.breathing_speed

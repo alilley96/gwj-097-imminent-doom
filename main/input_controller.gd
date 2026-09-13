@@ -5,6 +5,8 @@ extends Node
 
 signal rotate_clockwise()
 signal rotate_counter_clockwise()
+signal pause()
+
 
 # Lifecycle Functions ----------------------------------------------------------------
 
@@ -13,3 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_clockwise.emit()
 	elif event.is_action_pressed("rotate_counter_clockwise"):
 		rotate_counter_clockwise.emit()
+	elif event.is_action_pressed("pause"):
+		pause.emit()
+	else:
+		pass

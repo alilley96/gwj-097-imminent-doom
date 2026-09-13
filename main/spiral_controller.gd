@@ -32,16 +32,6 @@ func _ready() -> void:
 	spiral_spawn_timer.start()
 	
 
-func _process(delta: float) -> void:
-	var frame_damage := 0.0
-	for spiral in _spirals:
-		frame_damage += spiral.damage_per_second
-
-	frame_damage *= delta
-
-	damage.emit(frame_damage)
-
-
 # Private functions ----------------------------------------------------------------
 
 func _spawn_spiral() -> void:
@@ -88,6 +78,16 @@ func _spiral_completed(completed_spiral: Spiral) -> void:
 
 
 # Public functions ----------------------------------------------------------------
+
+func tick(delta: float) -> void:
+	var frame_damage := 0.0
+	for spiral in _spirals:
+		frame_damage += spiral.damage_per_second
+
+	frame_damage *= delta
+
+	damage.emit(frame_damage)
+
 
 func rotate_spirals_clockwise() -> void:
 	for spiral in _spirals:
