@@ -8,12 +8,14 @@ extends Node2D
 @export var ui_controller: UIController
 @export var effects_controller: EffectsController
 @export var player: Player
+@export var timer_label: Label
 
 
 # Private Variables ----------------------------------------------------------------
 
 var _game_over: bool = true
 var _game_paused: bool = true
+var _game_timer: float = 0.0
 
 
 # Lifecycle Functions ----------------------------------------------------------------
@@ -41,8 +43,11 @@ func _process(delta: float) -> void:
 	player.tick()
 	spiral_controller.tick(delta)
 	effects_controller.tick(delta)
-	
 
+	_game_timer += delta
+	timer_label.text = String.num(_game_timer, 2) + "s"
+	
+	
 # Private functions ----------------------------------------------------------------
 
 func _start() -> void:
@@ -52,6 +57,8 @@ func _start() -> void:
 	ui_controller.disable()
 	spiral_controller.spiral_spawn_timer.start()
 	spiral_controller.spiral_spawn_timer.paused = false
+
+	_game_timer = 0.0
 
 
 func _quit() -> void:
@@ -104,4 +111,3 @@ func _player_state_changed(state: PlayerState) -> void:
 		state.vignette_outer_radius,
 		state.vignette_opacity,
 	)
-	

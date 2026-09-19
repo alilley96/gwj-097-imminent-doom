@@ -27,13 +27,17 @@ shader_parameter/opacity = 0.9
 shader_parameter/inner_radius = 0.25
 shader_parameter/outer_radius = 1.0
 
-[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "ui_controller", "effects_controller", "player")]
+[sub_resource type="LabelSettings" id="LabelSettings_4u4fy"]
+font_size = 48
+
+[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "ui_controller", "effects_controller", "player", "timer_label")]
 script = ExtResource("1_63c7r")
 input_controller = NodePath("InputController")
 spiral_controller = NodePath("SpiralController")
 ui_controller = NodePath("Ui")
 effects_controller = NodePath("EffectsController")
 player = NodePath("Player")
+timer_label = NodePath("TimerLabel")
 metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
 
 [node name="Ui" parent="." unique_id=2001136355 instance=ExtResource("2_jc0vi")]
@@ -89,3 +93,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1408114123]
+offset_left = 1.0
+offset_top = -310.0
+offset_right = 250.0
+offset_bottom = 66.0
+size_flags_horizontal = 0
+text = "TIMER"
+label_settings = SubResource("LabelSettings_4u4fy")
+metadata/_edit_use_anchors_ = true
