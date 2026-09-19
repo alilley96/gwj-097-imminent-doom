@@ -16,6 +16,16 @@ signal completed(spiral: Spiral)
 @export var health_regen: float = 10.0
 
 
+# Constants ----------------------------------------------------------------
+
+const MAZE_ROTATION_FACTOR: float = 10.0
+
+
+# Private Variables ----------------------------------------------------------------
+
+var _maze_rotation: float = 0.0
+
+
 # Public Variables ----------------------------------------------------------------
 
 var spawn_point: SpiralSpawnPoint = null
@@ -32,14 +42,18 @@ func _ready() -> void:
 	maze.completed.connect(_maze_completed)
 
 
+func _process(delta: float) -> void:
+	maze.rotation = lerp(maze.rotation, _maze_rotation, delta * MAZE_ROTATION_FACTOR)
+
+
 # Public Functions ----------------------------------------------------------------
 
 func rotate_clockwise() -> void:
-	maze.rotate(0.1)
+	_maze_rotation += 0.1
 
 
 func rotate_counter_clockwise() -> void:
-	maze.rotate(-0.1)
+	_maze_rotation -= 0.1
 
 
 func destroy() -> void:
