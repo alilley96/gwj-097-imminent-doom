@@ -24,7 +24,7 @@ animations = [{
 "texture": ExtResource("4_fr45i")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -46,6 +46,26 @@ animations = [{
 "loop": true,
 "name": &"pop",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("9_7gp6a")
+}, {
+"duration": 0.4,
+"texture": ExtResource("8_l61di")
+}, {
+"duration": 0.3,
+"texture": ExtResource("7_4v27f")
+}, {
+"duration": 0.3,
+"texture": ExtResource("6_fxkjv")
+}, {
+"duration": 0.1,
+"texture": ExtResource("5_170jh")
+}],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pcdha"]
@@ -62,7 +82,8 @@ metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
 position = Vector2(0, 29)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_djd8e")
-frame_progress = 0.56755537
+animation = &"spawn"
+frame_progress = 0.87285095
 
 [node name="Ball" type="RigidBody2D" parent="." unique_id=925688684]
 position = Vector2(0, -24.305)

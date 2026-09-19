@@ -18,12 +18,12 @@ signal completed()
 const LINE_WIDTH: float = 30.0
 const SEGMENT_COUNT: int = 30
 const BASE_RADIUS: float = 250.0
-const GAP_SEGMENT_COUNT: int = 2
+const GAP_SEGMENT_COUNT: int = 3
 
 
-# Lifecycle Functions ----------------------------------------------------------------
+# Public Functions -----------------------------------------------------------------
 
-func _ready() -> void:
+func spawn() -> void:
 	_generate_maze(3)
 	maze_end_area.body_entered.connect(_maze_completed)
 

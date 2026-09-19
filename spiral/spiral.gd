@@ -19,6 +19,7 @@ signal completed(spiral: Spiral)
 # Constants ----------------------------------------------------------------
 
 const MAZE_ROTATION_FACTOR: float = 10.0
+const MAZE_ROTATION_SENSITIVITY: float = 0.15
 
 
 # Private Variables ----------------------------------------------------------------
@@ -34,8 +35,9 @@ var spawn_point: SpiralSpawnPoint = null
 # Lifecycle Functions ----------------------------------------------------------------
 
 func _ready() -> void:
-	thought_bubble_sprite.animation = "default"
+	thought_bubble_sprite.animation = "spawn"
 	thought_bubble_sprite.play()
+	thought_bubble_sprite.animation_looped.connect(_sprite_animation_looped)
 
 	ball.position = maze.ball_spawn_point.position
 
@@ -49,11 +51,11 @@ func _process(delta: float) -> void:
 # Public Functions ----------------------------------------------------------------
 
 func rotate_clockwise() -> void:
-	_maze_rotation += 0.1
+	_maze_rotation += MAZE_ROTATION_SENSITIVITY
 
 
 func rotate_counter_clockwise() -> void:
-	_maze_rotation -= 0.1
+	_maze_rotation -= MAZE_ROTATION_SENSITIVITY
 
 
 func destroy() -> void:
@@ -69,3 +71,9 @@ func destroy() -> void:
 
 func _maze_completed() -> void:
 	completed.emit(self)
+
+
+func _sprite_animation_looped() -> void:
+	thought_bubble_sprite.animation = "idle"
+	maze.spawn()
+	thought_bubble_sprite.animation_looped.disconnect(_sprite_animation_looped)
