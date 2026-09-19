@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cdn41wy37f2d0"]
+
+[ext_resource type="Script" uid="uid://ch8126o67f1p7" path="res://spiral_maze/spiral_maze.gd" id="1_c4st0"]
+
+[node name="SpiralMaze0" type="StaticBody2D" unique_id=1686373262 node_paths=PackedStringArray("maze_end_area", "ball_spawn_point")]
+script = ExtResource("1_c4st0")
+maze_end_area = NodePath("MazeEndArea2D")
+ball_spawn_point = NodePath("BallSpawnPoint")
+metadata/_custom_type_script = "uid://ch8126o67f1p7"
+
+[node name="MazeEndArea2D" type="Area2D" parent="." unique_id=1573067491]
+
+[node name="BallSpawnPoint" type="Marker2D" parent="." unique_id=183407886]
