@@ -5,19 +5,23 @@ extends Node2D
 
 @export var input_controller: InputController
 @export var spiral_controller: SpiralController
+@export var ui_controller: UIController
+@export var effects_controller: EffectsController
 @export var player: Player
 
 
 # Private Variables ----------------------------------------------------------------
 
 var _game_over: bool = true
-var _game_paused: bool = false
+var _game_paused: bool = true
 
 
 # Lifecycle Functions ----------------------------------------------------------------
 
 func _ready() -> void:
 	player.no_health.connect(_set_game_over)
+	player.state_changed.connect(_player_state_changed)
+	_player_state_changed(PlayerStates.CONTENT)
 	
 	input_controller.rotate_clockwise.connect(_rotate_spirals_clockwise)
 	input_controller.rotate_counter_clockwise.connect(_rotate_spirals_counter_clockwise)
@@ -26,7 +30,8 @@ func _ready() -> void:
 	spiral_controller.damage.connect(_apply_damage)
 	spiral_controller.heal.connect(_regen_health)
 
-	_start()
+	ui_controller.play.connect(_start)
+	ui_controller.quit.connect(_quit)
 
 
 func _process(delta: float) -> void:
@@ -35,6 +40,7 @@ func _process(delta: float) -> void:
 
 	player.tick()
 	spiral_controller.tick(delta)
+	effects_controller.tick(delta)
 	
 
 # Private functions ----------------------------------------------------------------
@@ -42,6 +48,14 @@ func _process(delta: float) -> void:
 func _start() -> void:
 	_game_over = false
 	_pause(false)
+
+	ui_controller.disable()
+	spiral_controller.spiral_spawn_timer.start()
+	spiral_controller.spiral_spawn_timer.paused = false
+
+
+func _quit() -> void:
+	pass
 
 
 func _toggle_pause() -> void:
@@ -53,10 +67,17 @@ func _pause(pause: bool) -> void:
 	_game_paused = pause
 	spiral_controller.spiral_spawn_timer.paused = pause
 
+	if _game_paused:
+		ui_controller.enable()
+	else:
+		ui_controller.disable()
+
 
 func _set_game_over() -> void:
 	_pause(true)
 	_game_over = true
+
+	ui_controller.visible = true
 	
 	
 func _rotate_spirals_clockwise() -> void:
@@ -75,3 +96,12 @@ func _apply_damage(amount: float) -> void:
 
 func _regen_health(amount: float) -> void:
 	player.regen_health(amount)
+	
+	
+func _player_state_changed(state: PlayerState) -> void:
+	effects_controller.update_vignette(
+		state.vignette_inner_radius,
+		state.vignette_outer_radius,
+		state.vignette_opacity,
+	)
+	

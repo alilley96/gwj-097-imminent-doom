@@ -29,7 +29,6 @@ var _spirals: Array[Spiral]
 func _ready() -> void:
 	spiral_spawn_timer.wait_time = spiral_spawn_rate
 	spiral_spawn_timer.timeout.connect(_spawn_spiral)
-	spiral_spawn_timer.start()
 	
 
 # Private functions ----------------------------------------------------------------

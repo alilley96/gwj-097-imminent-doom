@@ -4,6 +4,7 @@ extends Node2D
 # Signals ----------------------------------------------------------------
 
 signal no_health
+signal state_changed(state: PlayerState)
 
 
 # Exports ----------------------------------------------------------------
@@ -16,6 +17,7 @@ signal no_health
 # Private variables ----------------------------------------------------------------
 
 var _health: float = max_health
+var _current_state: PlayerState = PlayerStates.CONTENT
 
 
 # Lifecycle Functions ----------------------------------------------------------------
@@ -40,12 +42,11 @@ func regen_health(amount: float) -> void:
 
 
 func tick() -> void:
-	var current_state := PlayerStates.CONTENT
-	
 	for state in PlayerStates.STATES:
 		if _health < state.health_threshold:
-			current_state = state
+			_current_state = state
+			state_changed.emit(state)
 			break
 		
-	face_sprite.animation = current_state.face_animation_name
-	body_sprite.speed_scale = current_state.breathing_speed
+	face_sprite.animation = _current_state.face_animation_name
+	body_sprite.speed_scale = _current_state.breathing_speed

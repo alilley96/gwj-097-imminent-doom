@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="1_63c7r"]
 [ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
+[ext_resource type="PackedScene" uid="uid://dlwg5jydjjscs" path="res://main/ui.tscn" id="2_jc0vi"]
 [ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://main/spiral_controller.gd" id="3_3qcir"]
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
 [ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="4_vfw6y"]
+[ext_resource type="Script" uid="uid://dhbmaypx5uckv" path="res://main/effects_controller.gd" id="5_4u4fy"]
 [ext_resource type="Texture2D" uid="uid://c8vljxkopppg" path="res://main/assets/background_0.png" id="5_vfw6y"]
+[ext_resource type="Shader" uid="uid://bnvr17bjvfgke" path="res://shaders/vignette.gdshader" id="8_2c7eb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3qcir"]
 animations = [{
@@ -18,12 +21,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "player")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c7eb"]
+shader = ExtResource("8_2c7eb")
+shader_parameter/opacity = 0.9
+shader_parameter/inner_radius = 0.25
+shader_parameter/outer_radius = 1.0
+
+[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "ui_controller", "effects_controller", "player")]
 script = ExtResource("1_63c7r")
 input_controller = NodePath("InputController")
 spiral_controller = NodePath("SpiralController")
+ui_controller = NodePath("Ui")
+effects_controller = NodePath("EffectsController")
 player = NodePath("Player")
 metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
+
+[node name="Ui" parent="." unique_id=2001136355 instance=ExtResource("2_jc0vi")]
+z_index = 10
 
 [node name="InputController" type="Node" parent="." unique_id=340821141]
 script = ExtResource("2_2fwfh")
@@ -36,7 +50,13 @@ spiral_spawn_timer = NodePath("../SpiralSpawnTimer")
 spiral_spawn_points = [NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_0"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_1"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_2")]
 metadata/_custom_type_script = "uid://b5nftxjid3qwf"
 
+[node name="EffectsController" type="Node" parent="." unique_id=1146640661 node_paths=PackedStringArray("vignette")]
+script = ExtResource("5_4u4fy")
+vignette = NodePath("../CanvasLayer/Vignette")
+metadata/_custom_type_script = "uid://dhbmaypx5uckv"
+
 [node name="Player" parent="." unique_id=1874287193 instance=ExtResource("3_46yon")]
+z_index = 5
 position = Vector2(29, 141)
 scale = Vector2(0.5, 0.5)
 
@@ -56,6 +76,16 @@ position = Vector2(601, 153)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1232335331]
 
 [node name="BackgroundAnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=838533251]
-z_index = -1
 scale = Vector2(0.65, 0.65)
 sprite_frames = SubResource("SpriteFrames_3qcir")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=826297077]
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer" unique_id=1565055456]
+material = SubResource("ShaderMaterial_2c7eb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
