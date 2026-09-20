@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bpu16tsw25a5x" path="res://spiral/assets/thought_bubble_pop_frame_2.png" id="7_4v27f"]
 [ext_resource type="Texture2D" uid="uid://bisyqo56ihi3g" path="res://spiral/assets/thought_bubble_pop_frame_3.png" id="8_l61di"]
 [ext_resource type="Texture2D" uid="uid://ce5ogbeqjxi2i" path="res://spiral/assets/thought_bubble_pop_frame_4.png" id="9_7gp6a"]
+[ext_resource type="Texture2D" uid="uid://dv2loew6b01i5" path="res://spiral/assets/brain.png" id="10_4v27f"]
 [ext_resource type="PackedScene" uid="uid://cdn41wy37f2d0" path="res://spiral_maze/spiral_maze.tscn" id="10_fxkjv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_djd8e"]
@@ -23,7 +24,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_fr45i")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -43,7 +44,7 @@ animations = [{
 "duration": 0.6,
 "texture": ExtResource("9_7gp6a")
 }],
-"loop": true,
+"loop": 1,
 "name": &"pop",
 "speed": 5.0
 }, {
@@ -63,13 +64,13 @@ animations = [{
 "duration": 0.1,
 "texture": ExtResource("5_170jh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"spawn",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pcdha"]
-radius = 8.0
+radius = 12.0
 
 [node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze", "ball")]
 script = ExtResource("1_1wqmu")
@@ -88,13 +89,13 @@ frame_progress = 0.87285095
 [node name="Ball" type="RigidBody2D" parent="." unique_id=925688684]
 position = Vector2(0, -24.305)
 
-[node name="Polygon2D" type="Polygon2D" parent="Ball" unique_id=944091577]
-z_index = 1
-color = Color(0, 1, 0, 1)
-polygon = PackedVector2Array(0, -6, -5, -4, -7, 0, -5, 5, -1, 6, 6, 4, 6, 0, 5, -5)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=225752963]
 shape = SubResource("CircleShape2D_pcdha")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=567798675]
+position = Vector2(0, 2.3050003)
+scale = Vector2(0.018823242, 0.01931793)
+texture = ExtResource("10_4v27f")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=287396434]
 

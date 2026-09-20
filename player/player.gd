@@ -44,6 +44,9 @@ func regen_health(amount: float) -> void:
 func tick() -> void:
 	for state in PlayerStates.STATES:
 		if _health < state.health_threshold:
+			if _current_state == state:
+				return
+			
 			_current_state = state
 			state_changed.emit(state)
 			break

@@ -4,7 +4,7 @@ extends Node
 # Signals ----------------------------------------------------------------
 
 signal damage(amount: float)
-signal heal(amount: float)
+signal completed(amount: float)
 
 
 # Exports ----------------------------------------------------------------
@@ -66,7 +66,7 @@ func _get_free_spawn_point() -> SpiralSpawnPoint:
 
 
 func _spiral_completed(completed_spiral: Spiral) -> void:
-	heal.emit(completed_spiral.health_regen)
+	completed.emit(completed_spiral.health_regen)
 
 	_spirals.erase(completed_spiral)
 

@@ -7,6 +7,7 @@ extends Node2D
 @export var spiral_controller: SpiralController
 @export var ui_controller: UIController
 @export var effects_controller: EffectsController
+@export var audio_controller: AudioController
 @export var player: Player
 @export var timer_label: Label
 
@@ -30,10 +31,12 @@ func _ready() -> void:
 	input_controller.pause.connect(_toggle_pause)
 	
 	spiral_controller.damage.connect(_apply_damage)
-	spiral_controller.heal.connect(_regen_health)
+	spiral_controller.completed.connect(_spiral_completed)
 
 	ui_controller.play.connect(_start)
 	ui_controller.quit.connect(_quit)
+
+	audio_controller.play_music("main_menu")
 
 
 func _process(delta: float) -> void:
@@ -59,6 +62,7 @@ func _start() -> void:
 	spiral_controller.spiral_spawn_timer.paused = false
 
 	_game_timer = 0.0
+	audio_controller.play_music("content")
 
 
 func _quit() -> void:
@@ -101,8 +105,9 @@ func _apply_damage(amount: float) -> void:
 	player.apply_damage(amount)
 
 
-func _regen_health(amount: float) -> void:
-	player.regen_health(amount)
+func _spiral_completed(heal_amount: float) -> void:
+	player.regen_health(heal_amount)
+	audio_controller.play_pop_sfx()
 	
 	
 func _player_state_changed(state: PlayerState) -> void:
@@ -111,3 +116,4 @@ func _player_state_changed(state: PlayerState) -> void:
 		state.vignette_outer_radius,
 		state.vignette_opacity,
 	)
+	audio_controller.play_music(state.name)
