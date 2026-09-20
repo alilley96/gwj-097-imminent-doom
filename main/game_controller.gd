@@ -8,8 +8,8 @@ extends Node2D
 @export var ui_controller: UIController
 @export var effects_controller: EffectsController
 @export var audio_controller: AudioController
+@export var hud_controller: HudController
 @export var player: Player
-@export var timer_label: Label
 
 
 # Private Variables ----------------------------------------------------------------
@@ -17,6 +17,7 @@ extends Node2D
 var _game_over: bool = true
 var _game_paused: bool = true
 var _game_timer: float = 0.0
+var _high_score: float = 0.0
 
 
 # Lifecycle Functions ----------------------------------------------------------------
@@ -48,7 +49,9 @@ func _process(delta: float) -> void:
 	effects_controller.tick(delta)
 
 	_game_timer += delta
-	timer_label.text = String.num(_game_timer, 2) + "s"
+
+	hud_controller.update_health(player.health)
+	hud_controller.update_timer(_game_timer)
 	
 	
 # Private functions ----------------------------------------------------------------
@@ -63,6 +66,8 @@ func _start() -> void:
 
 	_game_timer = 0.0
 	audio_controller.play_music("content")
+
+	hud_controller.enable()
 
 
 func _quit() -> void:
@@ -87,6 +92,9 @@ func _pause(pause: bool) -> void:
 func _set_game_over() -> void:
 	_pause(true)
 	_game_over = true
+
+	if _game_timer > _high_score:
+		_high_score = _game_timer
 
 	ui_controller.visible = true
 	

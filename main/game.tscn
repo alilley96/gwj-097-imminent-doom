@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="1_63c7r"]
 [ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
-[ext_resource type="PackedScene" uid="uid://dlwg5jydjjscs" path="res://main/ui.tscn" id="2_jc0vi"]
+[ext_resource type="PackedScene" uid="uid://dlwg5jydjjscs" path="res://ui/ui.tscn" id="2_jc0vi"]
 [ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://main/spiral_controller.gd" id="3_3qcir"]
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
+[ext_resource type="PackedScene" uid="uid://d2wrxadfvkcb6" path="res://hud/hud.tscn" id="3_yu8fu"]
 [ext_resource type="Script" uid="uid://0amdo28kdbaj" path="res://main/audio_controller.gd" id="4_v3ojx"]
 [ext_resource type="PackedScene" uid="uid://btlu6np2304x1" path="res://spiral_spawn_point/spiral_spawn_point.tscn" id="4_vfw6y"]
 [ext_resource type="Script" uid="uid://dhbmaypx5uckv" path="res://main/effects_controller.gd" id="5_4u4fy"]
@@ -67,22 +68,21 @@ shader_parameter/opacity = 0.9
 shader_parameter/inner_radius = 0.25
 shader_parameter/outer_radius = 1.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_4u4fy"]
-font_size = 48
-
-[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "ui_controller", "effects_controller", "audio_controller", "player", "timer_label")]
+[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "ui_controller", "effects_controller", "audio_controller", "hud_controller", "player")]
 script = ExtResource("1_63c7r")
 input_controller = NodePath("InputController")
 spiral_controller = NodePath("SpiralController")
 ui_controller = NodePath("Ui")
 effects_controller = NodePath("EffectsController")
 audio_controller = NodePath("AudioController")
+hud_controller = NodePath("Hud")
 player = NodePath("Player")
-timer_label = NodePath("TimerLabel")
 metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
 
 [node name="Ui" parent="." unique_id=2001136355 instance=ExtResource("2_jc0vi")]
 z_index = 10
+
+[node name="Hud" parent="." unique_id=1249431293 instance=ExtResource("3_yu8fu")]
 
 [node name="InputController" type="Node" parent="." unique_id=340821141]
 script = ExtResource("2_2fwfh")
@@ -150,14 +150,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
-
-[node name="TimerLabel" type="Label" parent="." unique_id=1408114123]
-offset_left = 1.0
-offset_top = -310.0
-offset_right = 250.0
-offset_bottom = 66.0
-size_flags_horizontal = 0
-text = "TIMER"
-label_settings = SubResource("LabelSettings_4u4fy")
-metadata/_edit_use_anchors_ = true

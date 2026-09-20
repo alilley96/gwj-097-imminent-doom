@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://d2wrxadfvkcb6"]
+
+[ext_resource type="Script" uid="uid://d4k0134v3jkn2" path="res://hud/hud_controller.gd" id="1_6ca3a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ca3a"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ompsl"]
+bg_color = Color(0.047557652, 0.047557652, 0.047557607, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu8fu"]
+bg_color = Color(0.9904786, 0.54202944, 0.5311309, 1)
+
+[node name="Hud" type="CanvasLayer" unique_id=1249431293 node_paths=PackedStringArray("timer_label", "high_score_label", "health_bar")]
+script = ExtResource("1_6ca3a")
+timer_label = NodePath("Control/MarginContainer/HBoxContainer/TimerLabel")
+high_score_label = NodePath("")
+health_bar = NodePath("Control/MarginContainer/HBoxContainer/BoxContainer/HealthBar")
+metadata/_custom_type_script = "uid://d4k0134v3jkn2"
+
+[node name="Control" type="Control" parent="." unique_id=1907286180]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1314685983]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=1460754067]
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="Control/MarginContainer/HBoxContainer" unique_id=686408693]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_6ca3a")
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=525295099]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HealthBar" type="ProgressBar" parent="Control/MarginContainer/HBoxContainer/BoxContainer" unique_id=1487591945]
+custom_minimum_size = Vector2(0, 61.985)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+theme_override_styles/background = SubResource("StyleBoxFlat_ompsl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yu8fu")
+value = 50.0
+show_percentage = false

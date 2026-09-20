@@ -14,9 +14,13 @@ signal state_changed(state: PlayerState)
 @export var face_sprite: AnimatedSprite2D
 
 
+# Public variables ----------------------------------------------------------------
+
+var health: float = max_health
+
+
 # Private variables ----------------------------------------------------------------
 
-var _health: float = max_health
 var _current_state: PlayerState = PlayerStates.CONTENT
 
 
@@ -30,20 +34,20 @@ func _ready() -> void:
 # Public Functions ----------------------------------------------------------------
 
 func apply_damage(amount: float) -> void:
-	_health -= amount
-	if _health <= 0.0:
+	health -= amount
+	if health <= 0.0:
 		no_health.emit()
 
 
 func regen_health(amount: float) -> void:
-	_health += amount
-	if _health > max_health:
-		_health = max_health
+	health += amount
+	if health > max_health:
+		health = max_health
 
 
 func tick() -> void:
 	for state in PlayerStates.STATES:
-		if _health < state.health_threshold:
+		if health < state.health_threshold:
 			var next_state = state
 			if next_state != _current_state:
 				state_changed.emit(state)

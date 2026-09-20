@@ -11,10 +11,6 @@ var vignette_inner_radius: float
 var vignette_outer_radius: float
 var vignette_opacity: float
 
-# placeholders 
-var background: Texture2D
-var music: AudioStream
-
 
 # Public functions ---------------------------------------------------------------- 
 
