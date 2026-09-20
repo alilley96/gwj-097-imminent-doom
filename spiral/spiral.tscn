@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://ce5ogbeqjxi2i" path="res://spiral/assets/thought_bubble_pop_frame_4.png" id="9_7gp6a"]
 [ext_resource type="Texture2D" uid="uid://dv2loew6b01i5" path="res://spiral/assets/brain.png" id="10_4v27f"]
 [ext_resource type="PackedScene" uid="uid://cdn41wy37f2d0" path="res://spiral_maze/spiral_maze.tscn" id="10_fxkjv"]
+[ext_resource type="Script" uid="uid://c3ofp3ec3lae5" path="res://bubble_sprite/bubble_sprite.gd" id="12_l61di"]
+[ext_resource type="FontFile" uid="uid://b0ykraxd4a7w6" path="res://menu/assets/Yahfie/Yahfie-Heavy.ttf" id="13_7gp6a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_djd8e"]
 animations = [{
@@ -72,19 +74,106 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pcdha"]
 radius = 12.0
 
-[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze", "ball")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4v27f"]
+bg_color = Color(0.047557652, 0.047557652, 0.047557607, 1)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l61di"]
+bg_color = Color(0.9936262, 0.9164345, 0.71564907, 1)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gp6a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pcdha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lgvn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fr45i")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("5_170jh")
+}, {
+"duration": 0.3,
+"texture": ExtResource("6_fxkjv")
+}, {
+"duration": 0.3,
+"texture": ExtResource("7_4v27f")
+}, {
+"duration": 0.4,
+"texture": ExtResource("8_l61di")
+}, {
+"duration": 0.6,
+"texture": ExtResource("9_7gp6a")
+}],
+"loop": 0,
+"name": &"pop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("9_7gp6a")
+}, {
+"duration": 0.4,
+"texture": ExtResource("8_l61di")
+}, {
+"duration": 0.3,
+"texture": ExtResource("7_4v27f")
+}, {
+"duration": 0.3,
+"texture": ExtResource("6_fxkjv")
+}, {
+"duration": 0.1,
+"texture": ExtResource("5_170jh")
+}],
+"loop": 0,
+"name": &"spawn",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pqbhs"]
+font = ExtResource("13_7gp6a")
+font_size = 400
+font_color = Color(0, 0, 0, 1)
+outline_size = 40
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Spiral" type="Node2D" unique_id=1670825711 node_paths=PackedStringArray("thought_bubble_sprite", "maze", "ball", "expiration_timer", "timer_progress_bar", "damage_bubble_sprite", "damage_bubble_label", "health_bubble_sprite", "health_bubble_label")]
 script = ExtResource("1_1wqmu")
 thought_bubble_sprite = NodePath("AnimatedSprite2D")
 maze = NodePath("SpiralMaze0")
 ball = NodePath("Ball")
+expiration_timer = NodePath("ExpirationTimer")
+timer_progress_bar = NodePath("ExpirationProgressBar")
+damage_bubble_sprite = NodePath("DamageBubbleSprite")
+damage_bubble_label = NodePath("DamageBubbleSprite/DamageBubbleLabel")
+health_bubble_sprite = NodePath("HealthBubbleSprite")
+health_bubble_label = NodePath("HealthBubbleSprite/HealthBubbleLabel")
 metadata/_custom_type_script = "uid://b6cm8ecfo86uo"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=411711405]
 position = Vector2(0, 29)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_djd8e")
-animation = &"spawn"
-frame_progress = 0.87285095
+animation = &"idle"
+frame_progress = 0.6084012
 
 [node name="Ball" type="RigidBody2D" parent="." unique_id=925688684]
 position = Vector2(0, -24.305)
@@ -101,3 +190,70 @@ texture = ExtResource("10_4v27f")
 
 [node name="SpiralMaze0" parent="." unique_id=1686373262 instance=ExtResource("10_fxkjv")]
 scale = Vector2(0.19, 0.19)
+
+[node name="ExpirationProgressBar" type="ProgressBar" parent="." unique_id=1757388670]
+offset_left = -105.0
+offset_top = 181.0
+offset_right = 97.0
+offset_bottom = 208.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4v27f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l61di")
+value = 50.0
+show_percentage = false
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1554421039]
+
+[node name="DamageBubbleSprite" type="AnimatedSprite2D" parent="." unique_id=1334375871]
+self_modulate = Color(0.99583656, 0.74548674, 0.7333213, 1)
+position = Vector2(-140, -167.00002)
+scale = Vector2(0.06455078, 0.06406251)
+sprite_frames = SubResource("SpriteFrames_7gp6a")
+animation = &"pop"
+script = ExtResource("12_l61di")
+metadata/_custom_type_script = "uid://c3ofp3ec3lae5"
+
+[node name="DamageBubbleLabel" type="Label" parent="DamageBubbleSprite" unique_id=354356877]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1566.2089
+offset_top = -1445.4631
+offset_right = -514.20886
+offset_bottom = -774.4632
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Damage"
+label_settings = SubResource("LabelSettings_pqbhs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBubbleSprite" type="AnimatedSprite2D" parent="." unique_id=849868451]
+self_modulate = Color(0.8738716, 1, 0.84177476, 1)
+position = Vector2(125.000015, -163)
+scale = Vector2(0.066259764, 0.06308594)
+sprite_frames = SubResource("SpriteFrames_7gp6a")
+animation = &"pop"
+script = ExtResource("12_l61di")
+metadata/_custom_type_script = "uid://c3ofp3ec3lae5"
+
+[node name="HealthBubbleLabel" type="Label" parent="HealthBubbleSprite" unique_id=2112995434]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1537.1321
+offset_top = -1436.1362
+offset_right = -485.13202
+offset_bottom = -765.1362
+grow_horizontal = 2
+grow_vertical = 2
+text = "Health"
+label_settings = SubResource("LabelSettings_pqbhs")
+horizontal_alignment = 1
+vertical_alignment = 1

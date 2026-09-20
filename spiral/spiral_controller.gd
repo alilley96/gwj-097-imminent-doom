@@ -17,6 +17,12 @@ signal completed(amount: float)
 # Constants ----------------------------------------------------------------
 
 var SPIRAL_SCENE: PackedScene = preload("res://spiral/spiral.tscn")
+var MIN_SPIRAL_SECONDS: float = 2.0
+var MAX_SPIRAL_SECONDS: float = 10.0
+var MIN_SPIRAL_DAMAGE: int = 5
+var MAX_SPIRAL_DAMAGE: int = 30
+var MIN_SPIRAL_HEALTH_REGEN: int = 5
+var MAX_SPIRAL_HEALTH_REGEN: int = 20
 
 
 # Private Variables ----------------------------------------------------------------
@@ -43,9 +49,15 @@ func _spawn_spiral() -> void:
 	new_spiral.spawn_point = spawn_point
 
 	new_spiral.position = spawn_point.position
+	new_spiral.expiration_time_seconds = randf_range(MIN_SPIRAL_SECONDS, MAX_SPIRAL_SECONDS)
+	new_spiral.damage = randf_range(MIN_SPIRAL_DAMAGE, MAX_SPIRAL_DAMAGE)
+	new_spiral.health_regen = randf_range(MIN_SPIRAL_HEALTH_REGEN, MAX_SPIRAL_HEALTH_REGEN)
+
+
 	_spirals.append(new_spiral)
 
 	new_spiral.completed.connect(_spiral_completed)
+	new_spiral.failed.connect(_spiral_failed)
 
 	add_child(new_spiral)
 
@@ -76,17 +88,18 @@ func _spiral_completed(completed_spiral: Spiral) -> void:
 	completed_spiral.destroy()
 
 
+func _spiral_failed(failed_spiral: Spiral) -> void:
+	damage.emit(failed_spiral.damage)
+
+	_spirals.erase(failed_spiral)
+
+	failed_spiral.failed.disconnect(_spiral_failed)
+	
+	failed_spiral.spawn_point.active_spiral = null
+	failed_spiral.destroy()
+
+
 # Public functions ----------------------------------------------------------------
-
-func tick(delta: float) -> void:
-	var frame_damage := 0.0
-	for spiral in _spirals:
-		frame_damage += spiral.damage_per_second
-
-	frame_damage *= delta
-
-	damage.emit(frame_damage)
-
 
 func rotate_spirals_clockwise() -> void:
 	for spiral in _spirals:

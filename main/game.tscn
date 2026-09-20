@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="1_63c7r"]
 [ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
-[ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://main/spiral_controller.gd" id="3_3qcir"]
+[ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://spiral/spiral_controller.gd" id="3_3qcir"]
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
 [ext_resource type="PackedScene" uid="uid://d2wrxadfvkcb6" path="res://hud/hud.tscn" id="3_yu8fu"]
 [ext_resource type="Script" uid="uid://0amdo28kdbaj" path="res://main/audio_controller.gd" id="4_v3ojx"]
@@ -313,21 +313,23 @@ metadata/_custom_type_script = "uid://chc1iuf4dtkdr"
 layer = 2
 
 [node name="PlayButton" parent="MenuController/CanvasLayer" unique_id=72884964 instance=ExtResource("20_ompsl")]
-offset_left = -438.0
+z_index = 14
+offset_left = -427.0
 offset_top = 357.0
-offset_right = -263.0
+offset_right = -252.0
 offset_bottom = 457.0
 button_text = "Play"
 
-[node name="QuitButton" parent="MenuController/CanvasLayer" unique_id=833834944 instance=ExtResource("20_ompsl")]
+[node name="QuitButton" parent="MenuController/CanvasLayer" unique_id=180615723 instance=ExtResource("20_ompsl")]
+z_index = 14
 offset_left = 243.0
-offset_top = 365.0
+offset_top = 364.0
 offset_right = 418.0
-offset_bottom = 465.0
+offset_bottom = 464.0
 button_text = "Quit"
 
 [node name="ThoughtLogoBubbleSprite" type="AnimatedSprite2D" parent="MenuController/CanvasLayer" unique_id=600120211]
-position = Vector2(749.00006, 378)
+position = Vector2(726.00006, 383)
 scale = Vector2(0.5747475, 0.5539216)
 sprite_frames = SubResource("SpriteFrames_35v4i")
 animation = &"idle"

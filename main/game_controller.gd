@@ -49,7 +49,6 @@ func _process(delta: float) -> void:
 		return
 
 	player.tick()
-	spiral_controller.tick(delta)
 
 	_game_timer += delta
 
