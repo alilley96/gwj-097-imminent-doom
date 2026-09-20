@@ -42,10 +42,11 @@ clip_5/auto_advance = 0
 initial_clip = 5
 _transitions = {
 Vector2i(-1, -1): {
-"fade_beats": 1.0,
+"fade_beats": 0.2,
 "fade_mode": 3,
 "from_time": 1,
-"to_time": 1
+"hold_previous": true,
+"to_time": 2
 }
 }
 
@@ -95,11 +96,13 @@ pop_sfx = Array[AudioStream]([ExtResource("5_f7m14"), ExtResource("6_yyuar")])
 metadata/_custom_type_script = "uid://0amdo28kdbaj"
 
 [node name="SfxAudioStreamPlayer" type="AudioStreamPlayer2D" parent="AudioController" unique_id=127838260]
+max_polyphony = 2
 bus = &"SFX"
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer2D" parent="AudioController" unique_id=1341797300]
 stream = SubResource("AudioStreamInteractive_6gqxg")
 autoplay = true
+max_polyphony = 4
 bus = &"Music"
 
 [node name="SpiralController" type="Node" parent="." unique_id=264240810 node_paths=PackedStringArray("spiral_spawn_timer", "spiral_spawn_points")]

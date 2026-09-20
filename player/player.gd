@@ -44,11 +44,10 @@ func regen_health(amount: float) -> void:
 func tick() -> void:
 	for state in PlayerStates.STATES:
 		if _health < state.health_threshold:
-			if _current_state == state:
-				return
-			
-			_current_state = state
-			state_changed.emit(state)
+			var next_state = state
+			if next_state != _current_state:
+				state_changed.emit(state)
+			_current_state = next_state
 			break
 		
 	face_sprite.animation = _current_state.face_animation_name

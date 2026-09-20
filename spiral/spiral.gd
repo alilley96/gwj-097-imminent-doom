@@ -11,7 +11,7 @@ signal completed(spiral: Spiral)
 @export var thought_bubble_sprite: AnimatedSprite2D
 @export var maze: SpiralMaze
 @export var ball: Node2D
-@export var damage_per_second: float = 5.0
+@export var damage_per_second: float = 2.0
 
 @export var health_regen: float = 10.0
 
