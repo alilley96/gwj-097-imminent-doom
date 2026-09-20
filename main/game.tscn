@@ -91,6 +91,7 @@ shader = ExtResource("8_2c7eb")
 shader_parameter/opacity = 0.9
 shader_parameter/inner_radius = 0.25
 shader_parameter/outer_radius = 1.0
+shader_parameter/red_amount = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_35v4i"]
 animations = [{

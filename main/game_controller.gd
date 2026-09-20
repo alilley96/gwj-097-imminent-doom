@@ -105,7 +105,10 @@ func _set_game_over() -> void:
 
 	if _game_timer > _high_score:
 		_high_score = _game_timer
-	
+
+	spiral_controller.reset()
+	audio_controller.play_music("main_menu")
+
 	
 func _rotate_spirals_clockwise() -> void:
 	if not _game_paused:
@@ -120,6 +123,7 @@ func _rotate_spirals_counter_clockwise() -> void:
 func _apply_damage(amount: float) -> void:
 	player.apply_damage(amount)
 	audio_controller.play_damage_sfx()
+	effects_controller.pulse_red_vignette()
 
 
 func _spiral_completed(heal_amount: float) -> void:

@@ -4,6 +4,7 @@ shader_type canvas_item;
 uniform float opacity = 1.0;
 uniform float inner_radius = 0.0;
 uniform float outer_radius = 1.0;
+uniform float red_amount = 0.0;
 
 void fragment() {
 	vec2 distance_from_center = abs(UV - 0.5) * 2.0;
@@ -15,5 +16,5 @@ void fragment() {
 		1.0
 	);
 	
-	COLOR = vec4(0.0, 0.0, 0.0, darkness * opacity);
+	COLOR = vec4(red_amount, 0.0, 0.0, darkness * opacity);
 }
