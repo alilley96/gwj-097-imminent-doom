@@ -62,9 +62,9 @@ func _ready() -> void:
 	timer_progress_bar.min_value = 0.0
 
 	damage_bubble_sprite.spawn()
-	damage_bubble_label.text = str(damage)
+	damage_bubble_label.text = str(damage) + " dmg"
 	health_bubble_sprite.spawn()
-	health_bubble_label.text = str(health_regen)
+	health_bubble_label.text = str(health_regen) + " hp"
 
 
 func _process(delta: float) -> void:
