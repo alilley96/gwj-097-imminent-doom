@@ -11,6 +11,7 @@ extends Node2D
 @export var hud_controller: HudController
 @export var player: Player
 
+@export var score_label: Label
 
 # Private Variables ----------------------------------------------------------------
 
@@ -40,6 +41,8 @@ func _ready() -> void:
 
 	audio_controller.play_music("main_menu")
 	_set_pause_vignette()
+
+	score_label.visible = false
 
 
 func _process(delta: float) -> void:
@@ -108,6 +111,8 @@ func _set_game_over() -> void:
 
 	spiral_controller.reset()
 	audio_controller.play_music("main_menu")
+	score_label.text = "Score: " + String.num(_high_score, 1) + "s"
+	score_label.visible = true
 
 	
 func _rotate_spirals_clockwise() -> void:
@@ -152,6 +157,7 @@ func _reset() -> void:
 	audio_controller.play_music("content")
 	player.reset()
 	spiral_controller.reset()
+	score_label.visible = false
 
 
 func _play_button_pressed() -> void:

@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://eooyd4u6trx8" path="res://menu/assets/logo_spiral_pop_frame_3.png" id="37_mh2l7"]
 [ext_resource type="Texture2D" uid="uid://ba4mg0w5pyw3e" path="res://menu/assets/logo_spiral_pop_frame_4.png" id="38_3u56g"]
 [ext_resource type="Texture2D" uid="uid://ddkqgub7372k8" path="res://menu/assets/logo_spiral_pop_frame_5.png" id="39_ykswk"]
+[ext_resource type="FontFile" uid="uid://b0ykraxd4a7w6" path="res://menu/assets/Yahfie/Yahfie-Heavy.ttf" id="52_mgh06"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_6gqxg"]
 clip_count = 6
@@ -222,7 +223,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "menu_controller", "effects_controller", "audio_controller", "hud_controller", "player")]
+[sub_resource type="LabelSettings" id="LabelSettings_ykswk"]
+font = ExtResource("52_mgh06")
+font_size = 80
+outline_size = 40
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "menu_controller", "effects_controller", "audio_controller", "hud_controller", "player", "score_label")]
 script = ExtResource("1_63c7r")
 input_controller = NodePath("InputController")
 spiral_controller = NodePath("SpiralController")
@@ -231,9 +238,11 @@ effects_controller = NodePath("EffectsController")
 audio_controller = NodePath("AudioController")
 hud_controller = NodePath("Hud")
 player = NodePath("Player")
+score_label = NodePath("MenuController/CanvasLayer/ScoreLabel")
 metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
 
 [node name="Hud" parent="." unique_id=1249431293 instance=ExtResource("3_yu8fu")]
+layer = 2
 
 [node name="InputController" type="Node" parent="." unique_id=340821141]
 script = ExtResource("2_2fwfh")
@@ -351,3 +360,15 @@ animation = &"idle"
 frame_progress = 0.873285
 script = ExtResource("24_811gj")
 metadata/_custom_type_script = "uid://c3ofp3ec3lae5"
+
+[node name="ScoreLabel" type="Label" parent="MenuController/CanvasLayer" unique_id=208921670]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_top = 18.0
+offset_right = 103.0
+offset_bottom = 95.0
+grow_horizontal = 2
+text = "Score: "
+label_settings = SubResource("LabelSettings_ykswk")
