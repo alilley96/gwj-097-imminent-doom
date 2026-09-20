@@ -173,7 +173,7 @@ position = Vector2(0, 29)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_djd8e")
 animation = &"idle"
-frame_progress = 0.6084012
+frame_progress = 0.7762821
 
 [node name="Ball" type="RigidBody2D" parent="." unique_id=925688684]
 position = Vector2(0, -24.305)
