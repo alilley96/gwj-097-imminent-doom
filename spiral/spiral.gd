@@ -16,6 +16,7 @@ signal failed(spiral: Spiral)
 @export var expiration_time_seconds: int = 10
 @export var expiration_timer: Timer
 @export var timer_progress_bar: ProgressBar
+@export var timer_progress_bar_label: Label
 
 @export var damage_bubble_sprite: BubbleSprite
 @export var damage_bubble_label: Label
@@ -69,6 +70,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	maze.rotation = lerp(maze.rotation, _maze_rotation, delta * MAZE_ROTATION_FACTOR)
 	timer_progress_bar.value = expiration_timer.time_left
+	timer_progress_bar_label.text = String.num(timer_progress_bar.value, 1) + "s"
 
 
 # Public Functions ----------------------------------------------------------------
@@ -84,7 +86,9 @@ func rotate_counter_clockwise() -> void:
 func destroy() -> void:
 	thought_bubble_sprite.animation = "pop"
 	thought_bubble_sprite.sprite_frames.set_animation_loop("pop", false)
-	thought_bubble_sprite.animation_finished.connect(queue_free)
+	
+	if not thought_bubble_sprite.animation_finished.is_connected(queue_free):
+		thought_bubble_sprite.animation_finished.connect(queue_free)
 
 	damage_bubble_sprite.pop()
 	health_bubble_sprite.pop()

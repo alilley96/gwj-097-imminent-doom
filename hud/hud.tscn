@@ -29,10 +29,19 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="Hud" type="CanvasLayer" unique_id=1249431293 node_paths=PackedStringArray("timer_label", "health_bar")]
+[sub_resource type="LabelSettings" id="LabelSettings_318vg"]
+font = ExtResource("3_318vg")
+font_size = 48
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 38
+shadow_color = Color(0, 0, 0, 0.627451)
+
+[node name="Hud" type="CanvasLayer" unique_id=1249431293 node_paths=PackedStringArray("timer_label", "health_bar", "health_bar_label")]
 script = ExtResource("1_6ca3a")
 timer_label = NodePath("Control/MarginContainer/HBoxContainer/TimerLabel")
 health_bar = NodePath("Control/MarginContainer/HBoxContainer/BoxContainer/HealthBar")
+health_bar_label = NodePath("Control/MarginContainer/HBoxContainer/BoxContainer/HealthBar/HealthBarLabel")
 metadata/_custom_type_script = "uid://d4k0134v3jkn2"
 
 [node name="Control" type="Control" parent="." unique_id=1907286180]
@@ -79,3 +88,21 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ompsl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yu8fu")
 value = 50.0
 show_percentage = false
+
+[node name="HealthBarLabel" type="Label" parent="Control/MarginContainer/HBoxContainer/BoxContainer/HealthBar" unique_id=204037869]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Health"
+label_settings = SubResource("LabelSettings_318vg")
+horizontal_alignment = 1
+vertical_alignment = 1

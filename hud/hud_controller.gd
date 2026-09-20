@@ -5,6 +5,7 @@ extends CanvasLayer
 
 @export var timer_label: Label
 @export var health_bar: ProgressBar
+@export var health_bar_label: Label
 
 
 # Lifecycle Functions ----------------------------------------------------------------
@@ -27,7 +28,10 @@ func disable() -> void:
 
 func update_health(health: float) -> void:
 	health_bar.value = health
+	health_bar_label.text = String.num(health, 1) + "hp"
+	health_bar_label.visible = true
+	health_bar.visible = true
 
 
 func update_timer(timer: float) -> void:
-	timer_label.text = String.num(timer, 2) + "s"
+	timer_label.text = String.num(timer, 1) + "s"

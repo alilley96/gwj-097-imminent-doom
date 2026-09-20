@@ -93,7 +93,8 @@ func _spiral_failed(failed_spiral: Spiral) -> void:
 
 	_spirals.erase(failed_spiral)
 
-	failed_spiral.failed.disconnect(_spiral_failed)
+	if failed_spiral.failed.is_connected(_spiral_failed):
+		failed_spiral.failed.disconnect(_spiral_failed)
 	
 	failed_spiral.spawn_point.active_spiral = null
 	failed_spiral.destroy()
