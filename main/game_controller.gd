@@ -34,7 +34,7 @@ func _ready() -> void:
 	spiral_controller.damage.connect(_apply_damage)
 	spiral_controller.completed.connect(_spiral_completed)
 
-	menu_controller.play.connect(_start)
+	menu_controller.play.connect(_play_button_pressed)
 	menu_controller.quit.connect(_quit)
 	menu_controller.enable()
 
@@ -82,7 +82,7 @@ func _toggle_pause() -> void:
 
 func _pause(pause: bool) -> void:
 	_game_paused = pause
-	spiral_controller.spiral_spawn_timer.paused = pause
+	spiral_controller.pause(pause)
 
 	if _game_paused:
 		menu_controller.enable()
@@ -119,6 +119,7 @@ func _rotate_spirals_counter_clockwise() -> void:
 
 func _apply_damage(amount: float) -> void:
 	player.apply_damage(amount)
+	audio_controller.play_damage_sfx()
 
 
 func _spiral_completed(heal_amount: float) -> void:
@@ -141,3 +142,17 @@ func _set_pause_vignette() -> void:
 		PlayerStates.DOOMED.vignette_outer_radius,
 		PlayerStates.DOOMED.vignette_opacity
 	)
+
+func _reset() -> void:
+	_game_timer = 0.0
+	audio_controller.play_music("content")
+	player.reset()
+	spiral_controller.reset()
+
+
+func _play_button_pressed() -> void:
+	if _game_over:
+		_reset()
+		_start()
+	else:
+		_pause(false)

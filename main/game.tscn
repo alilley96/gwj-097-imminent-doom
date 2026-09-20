@@ -11,11 +11,15 @@
 [ext_resource type="AudioStream" uid="uid://bf060w11jorwi" path="res://sfx/pop_1.wav" id="5_f7m14"]
 [ext_resource type="Texture2D" uid="uid://c8vljxkopppg" path="res://main/assets/background_0.png" id="5_vfw6y"]
 [ext_resource type="AudioStream" uid="uid://c45cg4576bg1c" path="res://sfx/pop_2.wav" id="6_yyuar"]
+[ext_resource type="AudioStream" uid="uid://vf8fh1pa5nd6" path="res://sfx/damage_1.wav" id="7_3u56g"]
 [ext_resource type="AudioStream" uid="uid://qyn2dquyxlwv" path="res://music/content.wav" id="7_514y6"]
 [ext_resource type="AudioStream" uid="uid://c4eenyq4dlxaj" path="res://music/main_menu.wav" id="7_f7m14"]
 [ext_resource type="Shader" uid="uid://bnvr17bjvfgke" path="res://shaders/vignette.gdshader" id="8_2c7eb"]
 [ext_resource type="AudioStream" uid="uid://bu4btsbf4kqbi" path="res://music/neutral.wav" id="8_5prg3"]
+[ext_resource type="AudioStream" uid="uid://dmmvitrlpjwep" path="res://sfx/damage_2.wav" id="8_ykswk"]
 [ext_resource type="AudioStream" uid="uid://cqy0s5crewlm8" path="res://music/not_great.wav" id="9_ompsl"]
+[ext_resource type="AudioStream" uid="uid://b0ipkb55h2ce6" path="res://sfx/damage_3.wav" id="9_qsw11"]
+[ext_resource type="AudioStream" uid="uid://bmcqyj8d0v8ot" path="res://sfx/damage_4.wav" id="10_ou7gm"]
 [ext_resource type="AudioStream" uid="uid://cgkebwbm8ed5s" path="res://music/anxious.wav" id="10_yu8fu"]
 [ext_resource type="AudioStream" uid="uid://dh5n07r2siqnt" path="res://music/doomed.wav" id="11_kpj3s"]
 [ext_resource type="Script" uid="uid://chc1iuf4dtkdr" path="res://menu/menu_controller.gd" id="19_ompsl"]
@@ -239,6 +243,7 @@ script = ExtResource("4_v3ojx")
 sfx_audio_player = NodePath("SfxAudioStreamPlayer")
 music_audio_player = NodePath("MusicAudioStreamPlayer")
 pop_sfx = Array[AudioStream]([ExtResource("5_f7m14"), ExtResource("6_yyuar")])
+damage_sfx = Array[AudioStream]([ExtResource("7_3u56g"), ExtResource("8_ykswk"), ExtResource("9_qsw11"), ExtResource("10_ou7gm")])
 metadata/_custom_type_script = "uid://0amdo28kdbaj"
 
 [node name="SfxAudioStreamPlayer" type="AudioStreamPlayer2D" parent="AudioController" unique_id=127838260]

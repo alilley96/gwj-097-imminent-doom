@@ -23,8 +23,7 @@ var current_state: PlayerState = PlayerStates.CONTENT
 # Lifecycle Functions ----------------------------------------------------------------
 
 func _ready() -> void:
-	body_sprite.play()
-	face_sprite.play()
+	reset()
 
 
 # Public Functions ----------------------------------------------------------------
@@ -52,3 +51,12 @@ func tick() -> void:
 		
 	face_sprite.animation = current_state.face_animation_name
 	body_sprite.speed_scale = current_state.breathing_speed
+
+
+func reset() -> void:
+	health = max_health
+	current_state = PlayerStates.CONTENT
+	face_sprite.animation = PlayerStates.CONTENT.face_animation_name
+	body_sprite.speed_scale = PlayerStates.CONTENT.breathing_speed
+	face_sprite.play()
+	body_sprite.play()

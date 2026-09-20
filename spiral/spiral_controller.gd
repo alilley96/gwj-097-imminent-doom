@@ -18,7 +18,7 @@ signal completed(amount: float)
 
 var SPIRAL_SCENE: PackedScene = preload("res://spiral/spiral.tscn")
 var MIN_SPIRAL_SECONDS: float = 2.0
-var MAX_SPIRAL_SECONDS: float = 10.0
+var MAX_SPIRAL_SECONDS: float = 8.0
 var MIN_SPIRAL_DAMAGE: int = 5
 var MAX_SPIRAL_DAMAGE: int = 30
 var MIN_SPIRAL_HEALTH_REGEN: int = 5
@@ -109,3 +109,22 @@ func rotate_spirals_clockwise() -> void:
 func rotate_spirals_counter_clockwise() -> void:
 	for spiral in _spirals:
 		spiral.rotate_counter_clockwise()
+
+
+func pause(paused: bool) -> void:
+	spiral_spawn_timer.paused = paused
+	for spiral in _spirals:
+		spiral.expiration_timer.paused = paused
+
+	
+func reset() -> void:
+	for spiral in _spirals.duplicate():
+		_spirals.erase(spiral)
+
+		spiral.completed.disconnect(_spiral_completed)
+		spiral.failed.disconnect(_spiral_failed)
+
+		spiral.spawn_point.active_spiral = null
+		spiral.destroy()
+
+	_spirals.clear()

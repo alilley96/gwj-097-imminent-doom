@@ -95,6 +95,7 @@ func destroy() -> void:
 	maze.visible = false
 	ball.visible = false
 	timer_progress_bar.visible = false
+	expiration_timer.stop()
 
 
 # Private Functions -----------------------------------------------------------------
