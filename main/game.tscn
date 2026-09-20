@@ -300,12 +300,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="MenuController" type="Node2D" parent="." unique_id=2061090929 node_paths=PackedStringArray("play_button", "quit_button", "settings_button", "logo_thought_sprite", "logo_spiral_sprite")]
+[node name="MenuController" type="Node2D" parent="." unique_id=2061090929 node_paths=PackedStringArray("play_button", "quit_button", "logo_thought_sprite", "logo_spiral_sprite")]
 z_index = 10
 script = ExtResource("19_ompsl")
 play_button = NodePath("CanvasLayer/PlayButton")
 quit_button = NodePath("CanvasLayer/QuitButton")
-settings_button = NodePath("CanvasLayer/SettingsButton")
 logo_thought_sprite = NodePath("CanvasLayer/ThoughtLogoBubbleSprite")
 logo_spiral_sprite = NodePath("CanvasLayer/SpiralLogoBubbleSprite")
 metadata/_custom_type_script = "uid://chc1iuf4dtkdr"
@@ -314,41 +313,33 @@ metadata/_custom_type_script = "uid://chc1iuf4dtkdr"
 layer = 2
 
 [node name="PlayButton" parent="MenuController/CanvasLayer" unique_id=72884964 instance=ExtResource("20_ompsl")]
-offset_left = -138.0
-offset_top = 182.0
-offset_right = 37.0
-offset_bottom = 282.0
+offset_left = -438.0
+offset_top = 357.0
+offset_right = -263.0
+offset_bottom = 457.0
 button_text = "Play"
-initial_scale = 1.5
 
 [node name="QuitButton" parent="MenuController/CanvasLayer" unique_id=833834944 instance=ExtResource("20_ompsl")]
-offset_left = 399.0
-offset_top = 363.0
-offset_right = 574.0
-offset_bottom = 463.0
+offset_left = 243.0
+offset_top = 365.0
+offset_right = 418.0
+offset_bottom = 465.0
 button_text = "Quit"
 
-[node name="SettingsButton" parent="MenuController/CanvasLayer" unique_id=988431614 instance=ExtResource("20_ompsl")]
-offset_left = -506.0
-offset_top = 355.0
-offset_right = -331.0
-offset_bottom = 455.0
-button_text = "Settings"
-
 [node name="ThoughtLogoBubbleSprite" type="AnimatedSprite2D" parent="MenuController/CanvasLayer" unique_id=600120211]
-position = Vector2(744, 416)
+position = Vector2(749.00006, 378)
 scale = Vector2(0.5747475, 0.5539216)
 sprite_frames = SubResource("SpriteFrames_35v4i")
 animation = &"idle"
-frame_progress = 0.26261503
+frame_progress = 0.41667733
 script = ExtResource("24_811gj")
 metadata/_custom_type_script = "uid://c3ofp3ec3lae5"
 
 [node name="SpiralLogoBubbleSprite" type="AnimatedSprite2D" parent="MenuController/CanvasLayer" unique_id=1736564805]
-position = Vector2(1255, 371)
+position = Vector2(1260, 338)
 scale = Vector2(0.48080805, 0.44068632)
 sprite_frames = SubResource("SpriteFrames_pqbhs")
 animation = &"idle"
-frame_progress = 0.79034233
+frame_progress = 0.873285
 script = ExtResource("24_811gj")
 metadata/_custom_type_script = "uid://c3ofp3ec3lae5"
