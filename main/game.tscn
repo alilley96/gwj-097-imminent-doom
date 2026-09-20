@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cjj4pg2rc7q6r" path="res://main/game_controller.gd" id="1_63c7r"]
 [ext_resource type="Script" uid="uid://desrwj3job6fl" path="res://main/input_controller.gd" id="2_2fwfh"]
-[ext_resource type="PackedScene" uid="uid://dlwg5jydjjscs" path="res://ui/ui.tscn" id="2_jc0vi"]
 [ext_resource type="Script" uid="uid://b5nftxjid3qwf" path="res://main/spiral_controller.gd" id="3_3qcir"]
 [ext_resource type="PackedScene" uid="uid://cp8jissxbhjia" path="res://player/player.tscn" id="3_46yon"]
 [ext_resource type="PackedScene" uid="uid://d2wrxadfvkcb6" path="res://hud/hud.tscn" id="3_yu8fu"]
@@ -19,6 +18,27 @@
 [ext_resource type="AudioStream" uid="uid://cqy0s5crewlm8" path="res://music/not_great.wav" id="9_ompsl"]
 [ext_resource type="AudioStream" uid="uid://cgkebwbm8ed5s" path="res://music/anxious.wav" id="10_yu8fu"]
 [ext_resource type="AudioStream" uid="uid://dh5n07r2siqnt" path="res://music/doomed.wav" id="11_kpj3s"]
+[ext_resource type="Script" uid="uid://chc1iuf4dtkdr" path="res://menu/menu_controller.gd" id="19_ompsl"]
+[ext_resource type="PackedScene" uid="uid://v2vb21lfhq4b" path="res://bubble_button/bubble_button.tscn" id="20_ompsl"]
+[ext_resource type="Texture2D" uid="uid://xrh6yp2kk7yh" path="res://menu/assets/logo_thought_frame_0.png" id="21_d2f2p"]
+[ext_resource type="Texture2D" uid="uid://cpo1bop36kbmn" path="res://menu/assets/logo_thought_frame_1.png" id="22_ygnxu"]
+[ext_resource type="Texture2D" uid="uid://5sss66632pn0" path="res://menu/assets/logo_thought_frame_2.png" id="23_dfc64"]
+[ext_resource type="Script" uid="uid://c3ofp3ec3lae5" path="res://bubble_sprite/bubble_sprite.gd" id="24_811gj"]
+[ext_resource type="Texture2D" uid="uid://bah8qn8r7c82n" path="res://menu/assets/logo_thought_pop_frame_0.png" id="24_vpphe"]
+[ext_resource type="Texture2D" uid="uid://cbmwo0vofwxrp" path="res://menu/assets/logo_spiral_frame_0.png" id="25_4jhqd"]
+[ext_resource type="Texture2D" uid="uid://bxe28dk00qxip" path="res://menu/assets/logo_thought_pop_frame_1.png" id="25_35v4i"]
+[ext_resource type="Texture2D" uid="uid://d4bc4il4ucpdi" path="res://menu/assets/logo_spiral_frame_1.png" id="26_48bxr"]
+[ext_resource type="Texture2D" uid="uid://bjrybiuuqjqpo" path="res://menu/assets/logo_thought_pop_frame_2.png" id="26_lbmwo"]
+[ext_resource type="Texture2D" uid="uid://bj7bjfjh2bo5w" path="res://menu/assets/logo_thought_pop_frame_3.png" id="27_jqkc0"]
+[ext_resource type="Texture2D" uid="uid://cy1c2i74ex3m" path="res://menu/assets/logo_spiral_frame_2.png" id="27_vpphe"]
+[ext_resource type="Texture2D" uid="uid://dfvu1eamraedo" path="res://menu/assets/logo_thought_pop_frame_4.png" id="28_er0nc"]
+[ext_resource type="Texture2D" uid="uid://behpn7tw4qkur" path="res://menu/assets/logo_thought_pop_frame_5.png" id="29_xfm3h"]
+[ext_resource type="Texture2D" uid="uid://b3bvfpmciovel" path="res://menu/assets/logo_spiral_pop_frame_0.png" id="34_mnj0e"]
+[ext_resource type="Texture2D" uid="uid://dd06luidmxt1i" path="res://menu/assets/logo_spiral_pop_frame_1.png" id="35_175s1"]
+[ext_resource type="Texture2D" uid="uid://bf6i4sg02mn7s" path="res://menu/assets/logo_spiral_pop_frame_2.png" id="36_c7crw"]
+[ext_resource type="Texture2D" uid="uid://eooyd4u6trx8" path="res://menu/assets/logo_spiral_pop_frame_3.png" id="37_mh2l7"]
+[ext_resource type="Texture2D" uid="uid://ba4mg0w5pyw3e" path="res://menu/assets/logo_spiral_pop_frame_4.png" id="38_3u56g"]
+[ext_resource type="Texture2D" uid="uid://ddkqgub7372k8" path="res://menu/assets/logo_spiral_pop_frame_5.png" id="39_ykswk"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_6gqxg"]
 clip_count = 6
@@ -68,19 +88,145 @@ shader_parameter/opacity = 0.9
 shader_parameter/inner_radius = 0.25
 shader_parameter/outer_radius = 1.0
 
-[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "ui_controller", "effects_controller", "audio_controller", "hud_controller", "player")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_35v4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_d2f2p")
+}, {
+"duration": 0.5,
+"texture": ExtResource("22_ygnxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_dfc64")
+}, {
+"duration": 0.7,
+"texture": ExtResource("22_ygnxu")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("24_vpphe")
+}, {
+"duration": 0.3,
+"texture": ExtResource("25_35v4i")
+}, {
+"duration": 0.2,
+"texture": ExtResource("26_lbmwo")
+}, {
+"duration": 0.2,
+"texture": ExtResource("27_jqkc0")
+}, {
+"duration": 0.2,
+"texture": ExtResource("28_er0nc")
+}, {
+"duration": 0.2,
+"texture": ExtResource("29_xfm3h")
+}],
+"loop": 0,
+"name": &"pop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.3,
+"texture": ExtResource("29_xfm3h")
+}, {
+"duration": 0.3,
+"texture": ExtResource("27_jqkc0")
+}, {
+"duration": 0.2,
+"texture": ExtResource("26_lbmwo")
+}, {
+"duration": 0.3,
+"texture": ExtResource("25_35v4i")
+}, {
+"duration": 0.3,
+"texture": ExtResource("24_vpphe")
+}],
+"loop": 0,
+"name": &"spawn",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqbhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_4jhqd")
+}, {
+"duration": 0.9,
+"texture": ExtResource("26_48bxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_vpphe")
+}, {
+"duration": 0.9,
+"texture": ExtResource("26_48bxr")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("34_mnj0e")
+}, {
+"duration": 0.2,
+"texture": ExtResource("35_175s1")
+}, {
+"duration": 0.2,
+"texture": ExtResource("36_c7crw")
+}, {
+"duration": 0.2,
+"texture": ExtResource("37_mh2l7")
+}, {
+"duration": 0.2,
+"texture": ExtResource("38_3u56g")
+}, {
+"duration": 0.2,
+"texture": ExtResource("39_ykswk")
+}],
+"loop": 0,
+"name": &"pop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("39_ykswk")
+}, {
+"duration": 0.2,
+"texture": ExtResource("38_3u56g")
+}, {
+"duration": 0.2,
+"texture": ExtResource("37_mh2l7")
+}, {
+"duration": 0.2,
+"texture": ExtResource("36_c7crw")
+}, {
+"duration": 0.2,
+"texture": ExtResource("35_175s1")
+}, {
+"duration": 0.2,
+"texture": ExtResource("34_mnj0e")
+}],
+"loop": 0,
+"name": &"spawn",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D" unique_id=2020320118 node_paths=PackedStringArray("input_controller", "spiral_controller", "menu_controller", "effects_controller", "audio_controller", "hud_controller", "player")]
 script = ExtResource("1_63c7r")
 input_controller = NodePath("InputController")
 spiral_controller = NodePath("SpiralController")
-ui_controller = NodePath("Ui")
+menu_controller = NodePath("MenuController")
 effects_controller = NodePath("EffectsController")
 audio_controller = NodePath("AudioController")
 hud_controller = NodePath("Hud")
 player = NodePath("Player")
 metadata/_custom_type_script = "uid://cjj4pg2rc7q6r"
-
-[node name="Ui" parent="." unique_id=2001136355 instance=ExtResource("2_jc0vi")]
-z_index = 10
 
 [node name="Hud" parent="." unique_id=1249431293 instance=ExtResource("3_yu8fu")]
 
@@ -153,3 +299,56 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
+
+[node name="MenuController" type="Node2D" parent="." unique_id=2061090929 node_paths=PackedStringArray("play_button", "quit_button", "settings_button", "logo_thought_sprite", "logo_spiral_sprite")]
+z_index = 10
+script = ExtResource("19_ompsl")
+play_button = NodePath("CanvasLayer/PlayButton")
+quit_button = NodePath("CanvasLayer/QuitButton")
+settings_button = NodePath("CanvasLayer/SettingsButton")
+logo_thought_sprite = NodePath("CanvasLayer/ThoughtLogoBubbleSprite")
+logo_spiral_sprite = NodePath("CanvasLayer/SpiralLogoBubbleSprite")
+metadata/_custom_type_script = "uid://chc1iuf4dtkdr"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MenuController" unique_id=776478068]
+layer = 2
+
+[node name="PlayButton" parent="MenuController/CanvasLayer" unique_id=72884964 instance=ExtResource("20_ompsl")]
+offset_left = -138.0
+offset_top = 182.0
+offset_right = 37.0
+offset_bottom = 282.0
+button_text = "Play"
+initial_scale = 1.5
+
+[node name="QuitButton" parent="MenuController/CanvasLayer" unique_id=833834944 instance=ExtResource("20_ompsl")]
+offset_left = 399.0
+offset_top = 363.0
+offset_right = 574.0
+offset_bottom = 463.0
+button_text = "Quit"
+
+[node name="SettingsButton" parent="MenuController/CanvasLayer" unique_id=988431614 instance=ExtResource("20_ompsl")]
+offset_left = -506.0
+offset_top = 355.0
+offset_right = -331.0
+offset_bottom = 455.0
+button_text = "Settings"
+
+[node name="ThoughtLogoBubbleSprite" type="AnimatedSprite2D" parent="MenuController/CanvasLayer" unique_id=600120211]
+position = Vector2(744, 416)
+scale = Vector2(0.5747475, 0.5539216)
+sprite_frames = SubResource("SpriteFrames_35v4i")
+animation = &"idle"
+frame_progress = 0.26261503
+script = ExtResource("24_811gj")
+metadata/_custom_type_script = "uid://c3ofp3ec3lae5"
+
+[node name="SpiralLogoBubbleSprite" type="AnimatedSprite2D" parent="MenuController/CanvasLayer" unique_id=1736564805]
+position = Vector2(1255, 371)
+scale = Vector2(0.48080805, 0.44068632)
+sprite_frames = SubResource("SpriteFrames_pqbhs")
+animation = &"idle"
+frame_progress = 0.79034233
+script = ExtResource("24_811gj")
+metadata/_custom_type_script = "uid://c3ofp3ec3lae5"

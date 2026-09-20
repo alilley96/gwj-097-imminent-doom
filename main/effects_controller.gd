@@ -22,16 +22,16 @@ var _vignette_opacity: float = 0.5
 
 func process(delta: float) -> void:
 	_vignette_material.set_shader_parameter("inner_radius", _vignette_inner_radius)
-	_vignette_material.set_shader_parameter("outer_radius",_vignette_outer_radius)
+	_vignette_material.set_shader_parameter("outer_radius", _vignette_outer_radius)
 	_vignette_material.set_shader_parameter("opacity", _vignette_opacity)
 
 
 # Public Functions ----------------------------------------------------------------
 
 func tick(delta: float) -> void:
-	_vignette_material.set_shader_parameter("outer_radius", lerp(_vignette_material.get_shader_parameter("outer_radius"), _vignette_outer_radius, delta*VIGNETTE_FADING_FACTOR))
-	_vignette_material.set_shader_parameter("inner_radius", lerp(_vignette_material.get_shader_parameter("inner_radius"), _vignette_inner_radius, delta*VIGNETTE_FADING_FACTOR))
-	_vignette_material.set_shader_parameter("opacity", lerp(_vignette_material.get_shader_parameter("opacity"), _vignette_opacity, delta*VIGNETTE_FADING_FACTOR))
+	_vignette_material.set_shader_parameter("outer_radius", lerp(_vignette_material.get_shader_parameter("outer_radius"), _vignette_outer_radius, delta * VIGNETTE_FADING_FACTOR))
+	_vignette_material.set_shader_parameter("inner_radius", lerp(_vignette_material.get_shader_parameter("inner_radius"), _vignette_inner_radius, delta * VIGNETTE_FADING_FACTOR))
+	_vignette_material.set_shader_parameter("opacity", lerp(_vignette_material.get_shader_parameter("opacity"), _vignette_opacity, delta * VIGNETTE_FADING_FACTOR))
 	
 
 func update_vignette(inner_radius: float, outer_radius: float, opacity: float) -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oldm3x06p2kq"
-path="res://.godot/imported/logo_thought.png-cd658219c21ec6ff359e2ab27440a8fb.ctex"
+uid="uid://cpo1bop36kbmn"
+path="res://.godot/imported/logo_thought_frame_1.png-e0d6c492fcbb87a1b7f1e12711fefd4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/assets/logo_thought.png"
-dest_files=["res://.godot/imported/logo_thought.png-cd658219c21ec6ff359e2ab27440a8fb.ctex"]
+source_file="res://menu/assets/logo_thought_frame_1.png"
+dest_files=["res://.godot/imported/logo_thought_frame_1.png-e0d6c492fcbb87a1b7f1e12711fefd4a.ctex"]
 
 [params]
 

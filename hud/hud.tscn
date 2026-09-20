@@ -1,20 +1,37 @@
 [gd_scene format=3 uid="uid://d2wrxadfvkcb6"]
 
 [ext_resource type="Script" uid="uid://d4k0134v3jkn2" path="res://hud/hud_controller.gd" id="1_6ca3a"]
+[ext_resource type="FontFile" uid="uid://mu6y1tjm58jx" path="res://menu/assets/Yahfie/Yahfie-Normal.ttf" id="2_2gk58"]
+[ext_resource type="FontFile" uid="uid://b0ykraxd4a7w6" path="res://menu/assets/Yahfie/Yahfie-Heavy.ttf" id="3_318vg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ca3a"]
-font_size = 48
+font = ExtResource("3_318vg")
+font_size = 64
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 38
+shadow_color = Color(0, 0, 0, 0.627451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ompsl"]
 bg_color = Color(0.047557652, 0.047557652, 0.047557607, 1)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu8fu"]
 bg_color = Color(0.9904786, 0.54202944, 0.5311309, 1)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[node name="Hud" type="CanvasLayer" unique_id=1249431293 node_paths=PackedStringArray("timer_label", "high_score_label", "health_bar")]
+[node name="Hud" type="CanvasLayer" unique_id=1249431293 node_paths=PackedStringArray("timer_label", "health_bar")]
 script = ExtResource("1_6ca3a")
 timer_label = NodePath("Control/MarginContainer/HBoxContainer/TimerLabel")
-high_score_label = NodePath("")
 health_bar = NodePath("Control/MarginContainer/HBoxContainer/BoxContainer/HealthBar")
 metadata/_custom_type_script = "uid://d4k0134v3jkn2"
 
@@ -33,9 +50,9 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 117.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 25
+theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 25
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=1460754067]
@@ -44,6 +61,8 @@ layout_mode = 2
 [node name="TimerLabel" type="Label" parent="Control/MarginContainer/HBoxContainer" unique_id=686408693]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_2gk58")
+text = "TEMP"
 label_settings = SubResource("LabelSettings_6ca3a")
 
 [node name="BoxContainer" type="BoxContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=525295099]

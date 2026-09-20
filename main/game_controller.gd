@@ -5,7 +5,7 @@ extends Node2D
 
 @export var input_controller: InputController
 @export var spiral_controller: SpiralController
-@export var ui_controller: UIController
+@export var menu_controller: MenuController
 @export var effects_controller: EffectsController
 @export var audio_controller: AudioController
 @export var hud_controller: HudController
@@ -34,19 +34,22 @@ func _ready() -> void:
 	spiral_controller.damage.connect(_apply_damage)
 	spiral_controller.completed.connect(_spiral_completed)
 
-	ui_controller.play.connect(_start)
-	ui_controller.quit.connect(_quit)
+	menu_controller.play.connect(_start)
+	menu_controller.quit.connect(_quit)
+	menu_controller.enable()
 
 	audio_controller.play_music("main_menu")
+	_set_pause_vignette()
 
 
 func _process(delta: float) -> void:
+	effects_controller.tick(delta)
+
 	if _game_paused:
 		return
 
 	player.tick()
 	spiral_controller.tick(delta)
-	effects_controller.tick(delta)
 
 	_game_timer += delta
 
@@ -60,7 +63,6 @@ func _start() -> void:
 	_game_over = false
 	_pause(false)
 
-	ui_controller.disable()
 	spiral_controller.spiral_spawn_timer.start()
 	spiral_controller.spiral_spawn_timer.paused = false
 
@@ -71,7 +73,7 @@ func _start() -> void:
 
 
 func _quit() -> void:
-	pass
+	get_tree().quit()
 
 
 func _toggle_pause() -> void:
@@ -84,19 +86,26 @@ func _pause(pause: bool) -> void:
 	spiral_controller.spiral_spawn_timer.paused = pause
 
 	if _game_paused:
-		ui_controller.enable()
+		menu_controller.enable()
+		hud_controller.disable()
+		_set_pause_vignette()
 	else:
-		ui_controller.disable()
+		menu_controller.disable()
+		hud_controller.enable()
+		audio_controller.play_pop_sfx()
+		effects_controller.update_vignette(
+			player.current_state.vignette_inner_radius,
+			player.current_state.vignette_outer_radius,
+			player.current_state.vignette_opacity
+		)
 
 
 func _set_game_over() -> void:
-	_pause(true)
 	_game_over = true
+	_pause(true)
 
 	if _game_timer > _high_score:
 		_high_score = _game_timer
-
-	ui_controller.visible = true
 	
 	
 func _rotate_spirals_clockwise() -> void:
@@ -125,3 +134,11 @@ func _player_state_changed(state: PlayerState) -> void:
 		state.vignette_opacity,
 	)
 	audio_controller.play_music(state.name)
+
+
+func _set_pause_vignette() -> void:
+	effects_controller.update_vignette(
+		PlayerStates.DOOMED.vignette_inner_radius,
+		PlayerStates.DOOMED.vignette_outer_radius,
+		PlayerStates.DOOMED.vignette_opacity
+	)

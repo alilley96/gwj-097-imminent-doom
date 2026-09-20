@@ -17,11 +17,7 @@ signal state_changed(state: PlayerState)
 # Public variables ----------------------------------------------------------------
 
 var health: float = max_health
-
-
-# Private variables ----------------------------------------------------------------
-
-var _current_state: PlayerState = PlayerStates.CONTENT
+var current_state: PlayerState = PlayerStates.CONTENT
 
 
 # Lifecycle Functions ----------------------------------------------------------------
@@ -49,10 +45,10 @@ func tick() -> void:
 	for state in PlayerStates.STATES:
 		if health < state.health_threshold:
 			var next_state = state
-			if next_state != _current_state:
+			if next_state != current_state:
 				state_changed.emit(state)
-			_current_state = next_state
+			current_state = next_state
 			break
 		
-	face_sprite.animation = _current_state.face_animation_name
-	body_sprite.speed_scale = _current_state.breathing_speed
+	face_sprite.animation = current_state.face_animation_name
+	body_sprite.speed_scale = current_state.breathing_speed

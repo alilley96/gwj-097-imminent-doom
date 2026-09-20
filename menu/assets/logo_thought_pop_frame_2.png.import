@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx87pkmd4q5x1"
-path="res://.godot/imported/logo_spiral.png-e1be2bf34e1ec91a34c3320928808c18.ctex"
+uid="uid://bjrybiuuqjqpo"
+path="res://.godot/imported/logo_thought_pop_frame_2.png-59969668d4ab5d7e7168030ab4984bc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/assets/logo_spiral.png"
-dest_files=["res://.godot/imported/logo_spiral.png-e1be2bf34e1ec91a34c3320928808c18.ctex"]
+source_file="res://menu/assets/logo_thought_pop_frame_2.png"
+dest_files=["res://.godot/imported/logo_thought_pop_frame_2.png-59969668d4ab5d7e7168030ab4984bc2.ctex"]
 
 [params]
 

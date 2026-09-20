@@ -1,5 +1,5 @@
-class_name UIController
-extends Control
+class_name MenuController
+extends Node2D
 
 # Signals ----------------------------------------------------------------
 
@@ -9,16 +9,18 @@ signal quit()
 
 # Exports ----------------------------------------------------------------
 
-@export var play_button: Button
-@export var settings_button: Button
-@export var quit_button: Button
+@export var play_button: BubbleButton
+@export var quit_button: BubbleButton
+@export var settings_button: BubbleButton
+
+@export var logo_thought_sprite: BubbleSprite
+@export var logo_spiral_sprite: BubbleSprite
 
 
 # Lifecycle Functions ----------------------------------------------------------------
 
 func _ready() -> void:
 	play_button.pressed.connect(_play)
-	settings_button.pressed.connect(_settings)
 	quit_button.pressed.connect(_quit)
 
 
@@ -28,10 +30,6 @@ func _play() -> void:
 	play.emit()
 
 
-func _settings() -> void:
-	pass
-
-
 func _quit() -> void:
 	quit.emit()
 
@@ -39,8 +37,16 @@ func _quit() -> void:
 # Public functions ----------------------------------------------------------------
 
 func enable() -> void:
-	self.visible = true
+	play_button.spawn()
+	quit_button.spawn()
+	settings_button.spawn()
+	logo_thought_sprite.spawn()
+	logo_spiral_sprite.spawn()
 
 
 func disable() -> void:
-	self.visible = false
+	play_button.pop()
+	quit_button.pop()
+	settings_button.pop()
+	logo_thought_sprite.pop()
+	logo_spiral_sprite.pop()
