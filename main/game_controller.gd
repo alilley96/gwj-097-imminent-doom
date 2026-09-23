@@ -13,6 +13,7 @@ extends Node2D
 
 @export var score_label: Label
 
+
 # Private Variables ----------------------------------------------------------------
 
 var _game_over: bool = true

@@ -17,13 +17,15 @@ signal completed(amount: float)
 # Constants ----------------------------------------------------------------
 
 var SPIRAL_SCENE: PackedScene = preload("res://spiral/spiral.tscn")
-var MIN_SPIRAL_SECONDS: float = 2.0
+var MIN_SPIRAL_SECONDS: float = 3.0
 var MAX_SPIRAL_SECONDS: float = 8.0
-var MIN_SPIRAL_DAMAGE: int = 5
-var MAX_SPIRAL_DAMAGE: int = 30
+var MIN_SPIRAL_DAMAGE: int = 10
+var MAX_SPIRAL_DAMAGE: int = 25
 var MIN_SPIRAL_HEALTH_REGEN: int = 5
-var MAX_SPIRAL_HEALTH_REGEN: int = 20
+var MAX_SPIRAL_HEALTH_REGEN: int = 15
 
+var MAX_SPIRAL_SPAWN_SECONDS: float = 4.5
+var MIN_SPIRAL_SPAWN_SECONDS = .5
 
 # Private Variables ----------------------------------------------------------------
 
@@ -33,6 +35,7 @@ var _spirals: Array[Spiral]
 # Lifecycle Functions ----------------------------------------------------------------
 
 func _ready() -> void:
+	spiral_spawn_rate = MAX_SPIRAL_SPAWN_SECONDS
 	spiral_spawn_timer.wait_time = spiral_spawn_rate
 	spiral_spawn_timer.timeout.connect(_spawn_spiral)
 	
@@ -60,6 +63,9 @@ func _spawn_spiral() -> void:
 	new_spiral.failed.connect(_spiral_failed)
 
 	add_child(new_spiral)
+
+	spiral_spawn_rate = max(spiral_spawn_rate - 0.25, MIN_SPIRAL_SPAWN_SECONDS)
+	spiral_spawn_timer.wait_time = spiral_spawn_rate
 
 
 func _get_free_spawn_point() -> SpiralSpawnPoint:
@@ -129,3 +135,6 @@ func reset() -> void:
 		spiral.destroy()
 
 	_spirals.clear()
+
+	spiral_spawn_rate = MAX_SPIRAL_SPAWN_SECONDS
+	spiral_spawn_timer.wait_time = spiral_spawn_rate

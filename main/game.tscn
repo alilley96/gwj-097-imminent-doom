@@ -268,9 +268,9 @@ bus = &"Music"
 
 [node name="SpiralController" type="Node" parent="." unique_id=264240810 node_paths=PackedStringArray("spiral_spawn_timer", "spiral_spawn_points")]
 script = ExtResource("3_3qcir")
-spiral_spawn_rate = 2.0
+spiral_spawn_rate = 4.0
 spiral_spawn_timer = NodePath("../SpiralSpawnTimer")
-spiral_spawn_points = [NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_0"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_1"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_2"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_3")]
+spiral_spawn_points = [NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_0"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_1"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_2"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_3"), NodePath("../SpiralSpawnPoints/SpiralSpawnPoint_4")]
 metadata/_custom_type_script = "uid://b5nftxjid3qwf"
 
 [node name="EffectsController" type="Node" parent="." unique_id=1146640661 node_paths=PackedStringArray("vignette")]
@@ -286,16 +286,19 @@ scale = Vector2(0.5, 0.5)
 [node name="SpiralSpawnPoints" type="Node" parent="." unique_id=662160525]
 
 [node name="SpiralSpawnPoint_0" parent="SpiralSpawnPoints" unique_id=1003672187 instance=ExtResource("4_vfw6y")]
-position = Vector2(-609, -152)
+position = Vector2(-558, -281)
 
 [node name="SpiralSpawnPoint_1" parent="SpiralSpawnPoints" unique_id=290178425 instance=ExtResource("4_vfw6y")]
-position = Vector2(369.175, -305.945)
+position = Vector2(477, -359)
 
 [node name="SpiralSpawnPoint_2" parent="SpiralSpawnPoints" unique_id=628543463 instance=ExtResource("4_vfw6y")]
-position = Vector2(601, 153)
+position = Vector2(724, -1)
 
 [node name="SpiralSpawnPoint_3" parent="SpiralSpawnPoints" unique_id=1520077534 instance=ExtResource("4_vfw6y")]
-position = Vector2(-501, 319)
+position = Vector2(-634, 295)
+
+[node name="SpiralSpawnPoint_4" parent="SpiralSpawnPoints" unique_id=373924052 instance=ExtResource("4_vfw6y")]
+position = Vector2(517, 325)
 
 [node name="SpiralSpawnTimer" type="Timer" parent="." unique_id=505923704]
 
@@ -332,13 +335,15 @@ layer = 2
 
 [node name="PlayButton" parent="MenuController/CanvasLayer" unique_id=72884964 instance=ExtResource("20_ompsl")]
 z_index = 14
-offset_left = -427.0
-offset_top = 357.0
-offset_right = -252.0
-offset_bottom = 457.0
+offset_left = -135.0
+offset_top = 282.0
+offset_right = 40.0
+offset_bottom = 382.0
 button_text = "Play"
+initial_scale = 1.2
 
 [node name="QuitButton" parent="MenuController/CanvasLayer" unique_id=180615723 instance=ExtResource("20_ompsl")]
+visible = false
 z_index = 14
 offset_left = 243.0
 offset_top = 364.0
